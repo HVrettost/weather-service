@@ -1,0 +1,36 @@
+{
+	"info": {
+		"_postman_id": "73b996b5-4bd4-4052-9c8e-551a053874d7",
+		"name": "Weather-Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get current weather by city",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/weather/current?city=Athens",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"weather",
+						"current"
+					],
+					"query": [
+						{
+							"key": "city",
+							"value": "Athens"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
