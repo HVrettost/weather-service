@@ -1,0 +1,22 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.2'
+    id 'application'
+}
+
+group 'myreika.weather'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+mainClassName = 'myreika.weather.app.WeatherApplication'
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+

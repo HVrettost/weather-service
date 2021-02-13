@@ -1,0 +1,32 @@
+buildscript {
+    ext {
+        dependencyManagementVersion = "1.0.11.RELEASE"
+    }
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:${dependencyManagementVersion}"
+    }
+}
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'groovy'
+    apply plugin: 'io.spring.dependency-management'
+
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven { url 'https://jitpack.io' }
+    }
+
+    group 'kitkat.auth'
+    version '1.0'
+
+    sourceCompatibility = JavaVersion.VERSION_14
+    targetCompatibility = JavaVersion.VERSION_14
+}
