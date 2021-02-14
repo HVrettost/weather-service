@@ -37,8 +37,9 @@ public class OpenWeatherMapClientImpl implements OpenWeatherMapClient {
     @Override
     public CurrentWeather getCurrentWeatherByCity(String city, String units, String lang) {
         try {
-            return restTemplate.getForEntity(constructUrl(owmConfig.getCurrentWeatherUrl() + String.format(BY_CITY_URL, city), units, lang), CurrentWeather.class).getBody();
-        } catch(HttpClientErrorException ex) {
+            return restTemplate.getForEntity(constructUrl(owmConfig.getCurrentWeatherUrl()
+                    + String.format(BY_CITY_URL, city), units, lang), CurrentWeather.class).getBody();
+        } catch (HttpClientErrorException ex) {
             LOGGER.error(ex.getMessage());
             owmExceptionHandler.handleOwmException(ex);
         }

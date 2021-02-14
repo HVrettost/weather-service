@@ -1,7 +1,28 @@
 package myreika.weather.converter;
 
-import myreika.weather.dto.*;
-import myreika.weather.dto.owm.current.*;
+import myreika.weather.dto.owm.current.CurrentWeather;
+import myreika.weather.dto.owm.current.Clouds;
+import myreika.weather.dto.owm.current.Coord;
+import myreika.weather.dto.owm.current.Main;
+import myreika.weather.dto.owm.current.LastUpdate;
+import myreika.weather.dto.owm.current.Rain;
+import myreika.weather.dto.owm.current.Snow;
+import myreika.weather.dto.owm.current.Sys;
+import myreika.weather.dto.owm.current.Weather;
+import myreika.weather.dto.owm.current.Precipitation;
+import myreika.weather.dto.owm.current.Wind;
+import myreika.weather.dto.CurrentWeatherDto;
+import myreika.weather.dto.CloudsInfoDto;
+import myreika.weather.dto.CoordinatesDto;
+import myreika.weather.dto.MainInfoDto;
+import myreika.weather.dto.GeneralInfoDto;
+import myreika.weather.dto.RainDto;
+import myreika.weather.dto.SnowDto;
+import myreika.weather.dto.WeatherDescriptionDto;
+import myreika.weather.dto.PrecipitationDto;
+import myreika.weather.dto.WindInfoDto;
+import myreika.weather.dto.LastUpdateDto;
+
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -60,8 +81,8 @@ public class CurrentWeatherConverter implements Converter<CurrentWeather, Curren
     private MainInfoDto toMainInfoDto(Main main) {
         return main == null
                 ? new MainInfoDto()
-                : new MainInfoDto(main.getTemp(), main.getFeels_like(), main.getTemp_min(), main.getTemp_max(),
-                main.getPressure(), main.getHumidity(), main.getSea_level(), main.getGround_level());
+                : new MainInfoDto(main.getTemp(), main.getFeelsLike(), main.getTempMin(), main.getTempMax(),
+                main.getPressure(), main.getHumidity(), main.getSeaLevel(), main.getGroundLevel());
     }
 
     private List<WeatherDescriptionDto> toWeatherDescriptionDto(List<Weather> weatherList) {
@@ -81,13 +102,13 @@ public class CurrentWeatherConverter implements Converter<CurrentWeather, Curren
     private SnowDto toSnowDto(Snow snow) {
         return snow == null
                 ? new SnowDto()
-                : new SnowDto(snow.get_1h(), snow.get_2h());
+                : new SnowDto(snow.getSnowVolumeLastOneHourInMillimetres(), snow.getSnowVolumeLastThreeHoursInMillimetres());
     }
 
     private RainDto toRainDto(Rain rain) {
         return rain == null
                 ? new RainDto()
-                : new RainDto(rain.get_1h(), rain.get_2h());
+                : new RainDto(rain.getRainVolumeLastOneHourInMillimetres(), rain.getRainVolumeLastThreeHoursInMillimetres());
     }
 
     private LastUpdateDto toLastUpdateDto(LastUpdate lastUpdate) {

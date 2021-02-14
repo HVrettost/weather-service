@@ -13,7 +13,8 @@ public class LanguageValidator implements Validator<String> {
 
     @Override
     public void validate(String language) {
-        if (!Arrays.stream(Language.values()).anyMatch(l -> l.getValue().equals(language)))
+        if (Arrays.stream(Language.values()).noneMatch(l -> l.getValue().equals(language))) {
             throw new ValidationException(ValidationError.INVALID_LANGUAGE);
+        }
     }
 }

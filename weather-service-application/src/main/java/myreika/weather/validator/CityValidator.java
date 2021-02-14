@@ -12,7 +12,8 @@ public class CityValidator implements Validator<String> {
 
     @Override
     public void validate(String city) {
-        if (Strings.isNullOrEmpty(city) || city.length() > CITY_MAXIMUM_LENGTH)
+        if (Strings.isNullOrEmpty(city) || city.length() > CITY_MAXIMUM_LENGTH) {
             throw new ValidationException(ValidationError.INVALID_CITY_NAME);
+        }
     }
 }

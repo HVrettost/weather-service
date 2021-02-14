@@ -13,8 +13,8 @@ import lombok.Setter;
 public class Rain {
 
     @JsonProperty(value = "1h")
-    private double _1h;
+    private double rainVolumeLastOneHourInMillimetres;
 
     @JsonProperty(value = "3h")
-    private double _2h;
+    private double rainVolumeLastThreeHoursInMillimetres;
 }

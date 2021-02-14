@@ -12,7 +12,8 @@ public class UnitsValidator implements Validator<String> {
 
     @Override
     public void validate(String units) {
-        if (!Stream.of(Units.values()).anyMatch(u -> u.getValue().equals(units)))
+        if (Stream.of(Units.values()).noneMatch(u -> u.getValue().equals(units))) {
             throw new ValidationException(ValidationError.INVALID_UNITS);
+        }
     }
 }
