@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.Instant;
 import java.util.List;
 
 @Getter
@@ -19,4 +20,11 @@ public class CurrentWeatherDto {
     private MainInfoDto mainInfo;
     private List<WeatherDescriptionDto> weatherDescription;
     private WindInfoDto windInfo;
+    private int visibility;
+    private SnowDto snow;
+    private RainDto rain;
+    private PrecipitationDto precipitation;
+    private LastUpdateDto lastUpdate;
+    private Instant timeOfDataCalculation;
+
 }

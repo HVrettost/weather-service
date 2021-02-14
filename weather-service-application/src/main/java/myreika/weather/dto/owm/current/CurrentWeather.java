@@ -26,4 +26,9 @@ public class CurrentWeather {
     private int id;
     private String name;
     private int cod;
+    private Snow snow;
+    private Rain rain;
+    private LastUpdate lastUpdate;
+    private Precipitation precipitation;
+
 }

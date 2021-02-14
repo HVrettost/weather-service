@@ -27,6 +27,12 @@ public class CurrentWeatherConverter implements Converter<CurrentWeather, Curren
         currentWeatherDto.setMainInfo(toMainInfoDto(currentWeather.getMain()));
         currentWeatherDto.setWeatherDescription(toWeatherDescriptionDto(currentWeather.getWeather()));
         currentWeatherDto.setWindInfo(toWindInfoDto(currentWeather.getWind()));
+        currentWeatherDto.setVisibility(currentWeather.getVisibility());
+        currentWeatherDto.setSnow(toSnowDto(currentWeather.getSnow()));
+        currentWeatherDto.setRain(toRainDto(currentWeather.getRain()));
+        currentWeatherDto.setTimeOfDataCalculation(epochToDateTimeConverter.convert(currentWeather.getDt()));
+        currentWeatherDto.setPrecipitation(toPrecipitationDto(currentWeather.getPrecipitation()));
+        currentWeatherDto.setLastUpdate(toLastUpdateDto(currentWeather.getLastUpdate()));
 
         return currentWeatherDto;
     }
@@ -70,5 +76,29 @@ public class CurrentWeatherConverter implements Converter<CurrentWeather, Curren
         return wind == null
                 ? new WindInfoDto()
                 : new WindInfoDto(wind.getSpeed(), wind.getDeg(), wind.getGust());
+    }
+
+    private SnowDto toSnowDto(Snow snow) {
+        return snow == null
+                ? new SnowDto()
+                : new SnowDto(snow.get_1h(), snow.get_2h());
+    }
+
+    private RainDto toRainDto(Rain rain) {
+        return rain == null
+                ? new RainDto()
+                : new RainDto(rain.get_1h(), rain.get_2h());
+    }
+
+    private LastUpdateDto toLastUpdateDto(LastUpdate lastUpdate) {
+        return lastUpdate == null
+                ? new LastUpdateDto()
+                : new LastUpdateDto(epochToDateTimeConverter.convert(lastUpdate.getValue()));
+    }
+
+    private PrecipitationDto toPrecipitationDto(Precipitation precipitation) {
+        return precipitation == null
+                ? new PrecipitationDto()
+                : new PrecipitationDto(precipitation.getValueInMillimetres(), precipitation.getMode());
     }
 }
