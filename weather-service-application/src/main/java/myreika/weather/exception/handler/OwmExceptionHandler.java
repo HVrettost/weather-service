@@ -14,6 +14,8 @@ public class OwmExceptionHandler {
             throw new OwmException(OwmClientError.RESOURCE_NOT_FOUND);
         } else if (exception.getStatusCode() == HttpStatus.UNAUTHORIZED) {
             throw new OwmException(OwmClientError.INVALID_API_KEY);
+        } else {
+            throw new OwmException(OwmClientError.GENERIC_ERROR);
         }
     }
 }
