@@ -1,4 +1,4 @@
-package myreika.weather.dto.openweathermap.current;
+package myreika.weather.dto.owm.current;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,10 +9,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Weather {
+public class SysDto {
 
+    public int type;
     public int id;
-    public String main;
-    public String description;
-    public String icon;
+    public String country;
+    public int sunrise;
+    public int sunset;
 }

@@ -1,4 +1,4 @@
-package myreika.weather.dto.openweathermap.current;
+package myreika.weather.dto.owm.current;
 
 import java.util.List;
 
@@ -11,17 +11,17 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CurrentWeather {
+public class CurrentWeatherDto {
 
-    public Coord coord;
-    public List<Weather> weather;
+    public CoordDto coord;
+    public List<WeatherDto> weather;
     public String base;
-    public Main main;
+    public MainDto main;
     public int visibility;
-    public Wind wind;
-    public Clouds clouds;
+    public WindDto wind;
+    public CloudsDto clouds;
     public int dt;
-    public Sys sys;
+    public SysDto sys;
     public int timezone;
     public int id;
     public String name;

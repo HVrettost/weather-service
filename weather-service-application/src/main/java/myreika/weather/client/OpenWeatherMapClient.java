@@ -1,8 +1,8 @@
 package myreika.weather.client;
 
-import myreika.weather.dto.openweathermap.current.CurrentWeather;
+import myreika.weather.dto.owm.current.CurrentWeatherDto;
 
 public interface OpenWeatherMapClient {
 
-    CurrentWeather getCurrentWeatherByCity(String city);
+    CurrentWeatherDto getCurrentWeatherByCity(String city, String units, String lang);
 }

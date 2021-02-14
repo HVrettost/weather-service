@@ -1,4 +1,4 @@
-package myreika.weather.dto.openweathermap.current;
+package myreika.weather.dto.owm.current;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Main {
+public class MainDto {
 
     public double temp;
     public double feels_like;

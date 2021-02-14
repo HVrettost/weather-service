@@ -1,4 +1,4 @@
-package myreika.weather.dto.openweathermap.current;
+package myreika.weather.dto.owm.current;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Clouds {
+public class CoordDto {
 
-    public int all;
+    public double lon;
+    public double lat;
 }

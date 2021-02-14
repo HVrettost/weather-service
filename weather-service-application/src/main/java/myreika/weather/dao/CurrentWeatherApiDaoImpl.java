@@ -1,7 +1,7 @@
 package myreika.weather.dao;
 
 import myreika.weather.client.OpenWeatherMapClient;
-import myreika.weather.dto.openweathermap.current.CurrentWeather;
+import myreika.weather.dto.owm.current.CurrentWeatherDto;
 
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,7 @@ public class CurrentWeatherApiDaoImpl implements CurrentWeatherApiDao {
     }
 
     @Override
-    public CurrentWeather getCurrentWeatherByCity(String city) {
-        return openWeatherMapClient.getCurrentWeatherByCity(city);
+    public CurrentWeatherDto getCurrentWeatherByCity(String city, String units, String lang) {
+        return openWeatherMapClient.getCurrentWeatherByCity(city, units, lang);
     }
 }
