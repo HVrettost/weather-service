@@ -6,11 +6,11 @@ plugins {
 group 'myreika.weather'
 version '1.0'
 
-def authorizationQualityCheckProjectBuildDir = project.buildDir
+def weatherQualityCheckProjectBuildDir = project.buildDir
 
 checkstyle {
     version '8.37'
-    reportsDir file("$authorizationQualityCheckProjectBuildDir/checkstyleReports")
+    reportsDir file("$weatherQualityCheckProjectBuildDir/checkstyleReports")
     configDir project.file('config/checkstyle')
     configFile project.file('config/checkstyle/checkstyle.xml')
     ignoreFailures false
@@ -31,7 +31,7 @@ codenarc {
     version '2.0'
     configFile project.file('config/codenarc/codenarc.xml')
     ignoreFailures false
-    reportsDir file("$authorizationQualityCheckProjectBuildDir/codenarcReports")
+    reportsDir file("$weatherQualityCheckProjectBuildDir/codenarcReports")
     maxPriority1Violations 0
     maxPriority2Violations 0
     maxPriority3Violations 0

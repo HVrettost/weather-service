@@ -21,12 +21,23 @@ allprojects {
     repositories {
         mavenCentral()
         jcenter()
-        maven { url 'https://jitpack.io' }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     }
 
-    group 'kitkat.auth'
+    dependencies {
+        compile "org.codehaus.groovy:groovy:3.0.7"
+        testCompile platform("org.spockframework:spock-bom:2.0-M4-groovy-3.0")
+        testCompile "org.spockframework:spock-core"
+        testCompile "org.spockframework:spock-junit4"
+    }
+
+    group 'myreika.weather'
     version '1.0'
 
     sourceCompatibility = JavaVersion.VERSION_14
     targetCompatibility = JavaVersion.VERSION_14
+
+    test {
+        useJUnitPlatform()
+    }
 }
