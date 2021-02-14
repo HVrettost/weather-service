@@ -1,3 +1,4 @@
 rootProject.name = 'weather-service'
 include ('weather-service-application')
+include 'weather-service-quality-check'
 
