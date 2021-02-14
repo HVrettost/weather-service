@@ -9,11 +9,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SysDto {
+public class Weather {
 
-    public int type;
-    public int id;
-    public String country;
-    public int sunrise;
-    public int sunset;
+    private int id;
+    private String main;
+    private String description;
+    private String icon;
 }

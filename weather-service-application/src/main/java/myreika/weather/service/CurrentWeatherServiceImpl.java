@@ -1,7 +1,7 @@
 package myreika.weather.service;
 
 import myreika.weather.dao.CurrentWeatherApiDao;
-import myreika.weather.dto.owm.current.CurrentWeatherDto;
+import myreika.weather.dto.CurrentWeatherDto;
 import myreika.weather.validator.CityValidator;
 import myreika.weather.validator.LanguageValidator;
 import myreika.weather.validator.UnitsValidator;

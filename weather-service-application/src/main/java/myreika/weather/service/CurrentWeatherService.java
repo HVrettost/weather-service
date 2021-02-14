@@ -1,6 +1,6 @@
 package myreika.weather.service;
 
-import myreika.weather.dto.owm.current.CurrentWeatherDto;
+import myreika.weather.dto.CurrentWeatherDto;
 
 public interface CurrentWeatherService {
 

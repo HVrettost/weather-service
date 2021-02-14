@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CloudsDto {
+public class Clouds {
 
-    public int all;
+    private int all;
 }

@@ -3,10 +3,8 @@ package myreika.weather.client;
 import com.google.common.base.Strings;
 
 import myreika.weather.config.OwmConfig;
-import myreika.weather.dto.owm.current.CurrentWeatherDto;
+import myreika.weather.dto.owm.current.CurrentWeather;
 
-import myreika.weather.exception.ValidationException;
-import myreika.weather.exception.error.ValidationError;
 import myreika.weather.exception.handler.OwmExceptionHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,15 +35,15 @@ public class OpenWeatherMapClientImpl implements OpenWeatherMapClient {
     }
 
     @Override
-    public CurrentWeatherDto getCurrentWeatherByCity(String city, String units, String lang) {
+    public CurrentWeather getCurrentWeatherByCity(String city, String units, String lang) {
         try {
-            return restTemplate.getForEntity(constructUrl(owmConfig.getCurrentWeatherUrl() + String.format(BY_CITY_URL, city), units, lang), CurrentWeatherDto.class).getBody();
+            return restTemplate.getForEntity(constructUrl(owmConfig.getCurrentWeatherUrl() + String.format(BY_CITY_URL, city), units, lang), CurrentWeather.class).getBody();
         } catch(HttpClientErrorException ex) {
             LOGGER.error(ex.getMessage());
             owmExceptionHandler.handleOwmException(ex);
         }
 
-        return new CurrentWeatherDto();
+        return new CurrentWeather();
     }
 
     private String constructUrl(String requiredUrl, String units, String lang) {

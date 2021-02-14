@@ -9,8 +9,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CoordDto {
+public class Coord {
 
-    public double lon;
-    public double lat;
+    private double lon;
+    private double lat;
 }
