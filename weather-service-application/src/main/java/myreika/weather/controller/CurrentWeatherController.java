@@ -22,4 +22,22 @@ public class CurrentWeatherController implements CurrentWeatherApi {
         CurrentWeatherDto currentWeatherDto =  currentWeatherService.getCurrentWeatherByCity(city, units, lang);
         return new ResponseEntity<>(currentWeatherDto, HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<CurrentWeatherDto> getCurrentWeatherByCityId(String cityId, String units, String lang) {
+        CurrentWeatherDto currentWeatherDto = currentWeatherService.getCurrentWeatherByCityId(cityId, units, lang);
+        return new ResponseEntity<>(currentWeatherDto, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<CurrentWeatherDto> getCurrentWeatherByCoordinates(double latitude, double longitude, String units, String lang) {
+        CurrentWeatherDto currentWeatherDto = currentWeatherService.getCurrentWeatherByCoordinates(latitude, longitude, units, lang);
+        return new ResponseEntity<>(currentWeatherDto, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<CurrentWeatherDto> getCurrentWeatherByZipCode(String zipCode, String units, String lang) {
+        CurrentWeatherDto currentWeatherDto = currentWeatherService.getCurrentWeatherByZipCode(zipCode, units, lang);
+        return new ResponseEntity<>(currentWeatherDto, HttpStatus.OK);
+    }
 }

@@ -18,6 +18,9 @@ public class OpenWeatherMapClientImpl implements OpenWeatherMapClient {
     private static final Logger LOGGER = LoggerFactory.getLogger(OpenWeatherMapClientImpl.class);
 
     private static final String BY_CITY_URL = "?q=%s";
+    private static final String BY_CITY_ID_URL = "?id=%s";
+    private static final String BY_COORDINATES_URL = "?lat=%s&lon=%s";
+    private static final String BY_ZIP_CODE_URL = "?zip=%s";
     private static final String UNITS_PARAMETER_NAME = "&units=%s";
     private static final String LANG_PARAMETER_NAME = "&lang=%s";
     private static final String API_KEY_PARAMETER_NAME = "&appid=%s";
@@ -39,6 +42,45 @@ public class OpenWeatherMapClientImpl implements OpenWeatherMapClient {
         try {
             return restTemplate.getForEntity(constructUrl(owmConfig.getCurrentWeatherUrl()
                     + String.format(BY_CITY_URL, city), units, lang), CurrentWeather.class).getBody();
+        } catch (HttpClientErrorException ex) {
+            LOGGER.error(ex.getMessage());
+            owmExceptionHandler.handleOwmException(ex);
+        }
+
+        return new CurrentWeather();
+    }
+
+    @Override
+    public CurrentWeather getCurrentWeatherByCityId(String cityId, String units, String lang) {
+        try {
+            return restTemplate.getForEntity(constructUrl(owmConfig.getCurrentWeatherUrl()
+                    + String.format(BY_CITY_ID_URL, cityId), units, lang), CurrentWeather.class).getBody();
+        } catch (HttpClientErrorException ex) {
+            LOGGER.error(ex.getMessage());
+            owmExceptionHandler.handleOwmException(ex);
+        }
+
+        return new CurrentWeather();
+    }
+
+    @Override
+    public CurrentWeather getCurrentWeatherByCoordinates(double latitude, double longitude, String units, String lang) {
+        try {
+            return restTemplate.getForEntity(constructUrl(owmConfig.getCurrentWeatherUrl()
+                    + String.format(BY_COORDINATES_URL, latitude, longitude), units, lang), CurrentWeather.class).getBody();
+        } catch (HttpClientErrorException ex) {
+            LOGGER.error(ex.getMessage());
+            owmExceptionHandler.handleOwmException(ex);
+        }
+
+        return new CurrentWeather();
+    }
+
+    @Override
+    public CurrentWeather getCurrentWeatherByZipCode(String zipCode, String units, String lang) {
+        try {
+            return restTemplate.getForEntity(constructUrl(owmConfig.getCurrentWeatherUrl()
+                    + String.format(BY_ZIP_CODE_URL, zipCode), units, lang), CurrentWeather.class).getBody();
         } catch (HttpClientErrorException ex) {
             LOGGER.error(ex.getMessage());
             owmExceptionHandler.handleOwmException(ex);

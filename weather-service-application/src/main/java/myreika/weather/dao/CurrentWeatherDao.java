@@ -1,8 +1,8 @@
-package myreika.weather.service;
+package myreika.weather.dao;
 
 import myreika.weather.dto.CurrentWeatherDto;
 
-public interface CurrentWeatherService {
+public interface CurrentWeatherDao {
 
     CurrentWeatherDto getCurrentWeatherByCity(String city, String units, String lang);
 

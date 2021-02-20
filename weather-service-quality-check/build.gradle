@@ -40,8 +40,6 @@ codenarc {
         source {
             files rootProject.files('weather-service-application/src/test/groovy')
             files rootProject.files('weather-service-application/src/main/groovy')
-            //files rootProject.files('authorization-functional-tests/src/test/groovy')
-            //files rootProject.files('authorization-functional-tests/src/main/groovy')
         }
     }
 }
