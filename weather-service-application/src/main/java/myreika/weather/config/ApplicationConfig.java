@@ -3,6 +3,7 @@ package myreika.weather.config;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -26,5 +27,10 @@ public class ApplicationConfig {
         messageConverters.add(mappingJackson2HttpMessageConverter);
 
         return messageConverters;
+    }
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        return new ObjectMapper();
     }
 }

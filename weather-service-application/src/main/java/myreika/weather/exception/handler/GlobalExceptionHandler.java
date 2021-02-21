@@ -24,7 +24,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({ OwmException.class })
     public ResponseEntity<ErrorDetails> handleOwmException(OwmException owmException) {
-        LOGGER.error(owmException.getDescription(), owmException);
+        LOGGER.error(owmException.getMessage(), owmException);
         return new ResponseEntity<>(owmException.getErrorDetails(), owmException.getHttpStatus());
     }
 

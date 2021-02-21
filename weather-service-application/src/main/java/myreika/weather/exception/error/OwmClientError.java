@@ -8,12 +8,18 @@ import org.springframework.http.HttpStatus;
 @AllArgsConstructor
 public enum OwmClientError {
 
-    RESOURCE_NOT_FOUND(2000, "Requested resource not found", "", HttpStatus.CONFLICT),
-    INVALID_API_KEY(2001, "Unauthorized call to Open Weather Map using the wrong api key", "", HttpStatus.UNAUTHORIZED),
-    OWM_GENERAL_ERROR(2050, "Generic Open Weather Map error", "", HttpStatus.CONFLICT);
+    OWM_ERROR(2000, "", "", HttpStatus.CONFLICT);
 
     private final int errorCode;
-    private final String message;
-    private final String description;
+    private String message;
+    private String description;
     private final HttpStatus httpStatus;
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
