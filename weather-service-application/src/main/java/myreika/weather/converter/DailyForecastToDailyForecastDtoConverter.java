@@ -15,7 +15,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
@@ -47,9 +46,9 @@ public class DailyForecastToDailyForecastDtoConverter implements Converter<Daily
 
     private DailyDto toDailyDto(Daily daily, long timezoneOffset) {
         DailyDto dailyDto = new DailyDto();
-        dailyDto.setDateTime(Objects.requireNonNull(epochToDateTimeConverter.convert(daily.getDateTime())).plusSeconds(timezoneOffset));
-        dailyDto.setSunrise(Objects.requireNonNull(epochToDateTimeConverter.convert(daily.getSunrise())).plusSeconds(timezoneOffset));
-        dailyDto.setSunset(Objects.requireNonNull(epochToDateTimeConverter.convert(daily.getSunset())).plusSeconds(timezoneOffset));
+        dailyDto.setDateTime(epochToDateTimeConverter.convert(daily.getDateTime()));
+        dailyDto.setSunrise(epochToDateTimeConverter.convert(daily.getSunrise()));
+        dailyDto.setSunset(epochToDateTimeConverter.convert(daily.getSunset()));
         dailyDto.setTemperature(toTemperatureDto(daily.getTemperature()));
         dailyDto.setFeelsLike(toFeelsLikeDto(daily.getFeelsLike()));
         dailyDto.setPressure(daily.getPressure());

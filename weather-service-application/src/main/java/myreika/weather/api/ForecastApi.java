@@ -12,7 +12,7 @@ public interface ForecastApi {
 
     @GetMapping(value = "daily/coordinates", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<DailyForecastDto> getDailyForecastByCoordinates(@RequestParam(value = "lat") double latitude,
-                                                                   @RequestParam(value = "long") double longitude,
+                                                                   @RequestParam(value = "lon") double longitude,
                                                                    @RequestParam(value = "units", required = false) String units,
                                                                    @RequestParam(value = "lang", required = false) String lang);
 
