@@ -20,7 +20,8 @@ public class ForecastDaoImpl implements ForecastDao {
 
     @Override
     public DailyForecastDto getDailyForecastByCoordinates(Coordinates coordinates, String units, String lang) {
-        DailyForecast dailyForecast = openWeatherMapForecastClient.getDailyForecastByCoordinates(coordinates.getLatitude(), coordinates.getLongitude(), units, lang);
+        DailyForecast dailyForecast = openWeatherMapForecastClient
+                .getDailyForecastByCoordinates(coordinates.getLatitude(), coordinates.getLongitude(), units, lang);
 
         return conversionService.convert(dailyForecast, DailyForecastDto.class);
     }

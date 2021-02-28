@@ -1,7 +1,6 @@
 package myreika.weather.validator;
 
 import myreika.weather.domain.Coordinates;
-import myreika.weather.dto.CoordinatesDto;
 import myreika.weather.exception.ValidationException;
 import myreika.weather.exception.error.ValidationError;
 import org.springframework.stereotype.Component;

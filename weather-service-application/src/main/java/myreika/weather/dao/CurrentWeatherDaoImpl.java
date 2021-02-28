@@ -34,7 +34,8 @@ public class CurrentWeatherDaoImpl implements CurrentWeatherDao {
 
     @Override
     public CurrentWeatherDto getCurrentWeatherByCoordinates(Coordinates coordinates, String units, String lang) {
-        CurrentWeather currentWeather = openWeatherMapCurrentClient.getCurrentWeatherByCoordinates(coordinates.getLatitude(), coordinates.getLongitude(), units, lang);
+        CurrentWeather currentWeather = openWeatherMapCurrentClient
+                .getCurrentWeatherByCoordinates(coordinates.getLatitude(), coordinates.getLongitude(), units, lang);
         return conversionService.convert(currentWeather, CurrentWeatherDto.class);
     }
 
