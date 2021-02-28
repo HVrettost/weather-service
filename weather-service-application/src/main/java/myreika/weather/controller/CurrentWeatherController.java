@@ -1,6 +1,7 @@
 package myreika.weather.controller;
 
 import myreika.weather.api.CurrentWeatherApi;
+import myreika.weather.domain.Coordinates;
 import myreika.weather.dto.CurrentWeatherDto;
 import myreika.weather.service.CurrentWeatherService;
 
@@ -24,19 +25,20 @@ public class CurrentWeatherController implements CurrentWeatherApi {
     }
 
     @Override
-    public ResponseEntity<CurrentWeatherDto> getCurrentWeatherByCityId(String cityId, String units, String lang) {
+    public ResponseEntity<CurrentWeatherDto> getCurrentWeatherByCityId(int cityId, String units, String lang) {
         CurrentWeatherDto currentWeatherDto = currentWeatherService.getCurrentWeatherByCityId(cityId, units, lang);
         return new ResponseEntity<>(currentWeatherDto, HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<CurrentWeatherDto> getCurrentWeatherByCoordinates(double latitude, double longitude, String units, String lang) {
-        CurrentWeatherDto currentWeatherDto = currentWeatherService.getCurrentWeatherByCoordinates(latitude, longitude, units, lang);
+        Coordinates coordinates = new Coordinates(latitude, longitude);
+        CurrentWeatherDto currentWeatherDto = currentWeatherService.getCurrentWeatherByCoordinates(coordinates, units, lang);
         return new ResponseEntity<>(currentWeatherDto, HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<CurrentWeatherDto> getCurrentWeatherByZipCode(String zipCode, String units, String lang) {
+    public ResponseEntity<CurrentWeatherDto> getCurrentWeatherByZipCode(int zipCode, String units, String lang) {
         CurrentWeatherDto currentWeatherDto = currentWeatherService.getCurrentWeatherByZipCode(zipCode, units, lang);
         return new ResponseEntity<>(currentWeatherDto, HttpStatus.OK);
     }

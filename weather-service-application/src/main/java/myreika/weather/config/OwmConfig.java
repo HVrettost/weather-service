@@ -15,4 +15,5 @@ public class OwmConfig {
 
     private String apiKey;
     private String currentWeatherUrl;
+    private String oneCallUrl;
 }

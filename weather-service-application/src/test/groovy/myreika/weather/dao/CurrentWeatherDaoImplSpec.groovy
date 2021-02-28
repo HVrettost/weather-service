@@ -1,6 +1,6 @@
 package myreika.weather.dao
 
-import myreika.weather.client.OpenWeatherMapClient
+import myreika.weather.client.OpenWeatherMapCurrentClient
 import myreika.weather.dto.CurrentWeatherDto
 import myreika.weather.dto.owm.current.CurrentWeather
 import org.springframework.core.convert.ConversionService
@@ -8,7 +8,7 @@ import spock.lang.Specification
 
 class CurrentWeatherDaoImplSpec extends Specification {
 
-    OpenWeatherMapClient openWeatherMapClient
+    OpenWeatherMapCurrentClient openWeatherMapClient
     ConversionService conversionService
     CurrentWeatherDao currentWeatherDao
 

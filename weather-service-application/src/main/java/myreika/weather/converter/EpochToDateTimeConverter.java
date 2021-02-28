@@ -1,7 +1,6 @@
 package myreika.weather.converter;
 
 import org.springframework.core.convert.converter.Converter;
-import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
@@ -10,7 +9,7 @@ import java.time.Instant;
 public class EpochToDateTimeConverter implements Converter<Integer, Instant> {
 
     @Override
-    public Instant convert(@NonNull Integer epochTimeInSeconds) {
+    public Instant convert(Integer epochTimeInSeconds) {
         return Instant.ofEpochSecond(epochTimeInSeconds);
     }
 }

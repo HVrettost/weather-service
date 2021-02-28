@@ -4,8 +4,8 @@ import com.google.common.base.Strings;
 
 import myreika.weather.config.OwmConfig;
 import myreika.weather.dto.owm.current.CurrentWeather;
-
 import myreika.weather.exception.handler.OwmExceptionHandler;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -13,14 +13,14 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 @Component
-public class OpenWeatherMapClientImpl implements OpenWeatherMapClient {
+public class OpenWeatherMapCurrentClientImpl implements OpenWeatherMapCurrentClient {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(OpenWeatherMapClientImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(OpenWeatherMapCurrentClientImpl.class);
 
-    private static final String BY_CITY_URL = "?q=%s";
-    private static final String BY_CITY_ID_URL = "?id=%s";
-    private static final String BY_COORDINATES_URL = "?lat=%s&lon=%s";
-    private static final String BY_ZIP_CODE_URL = "?zip=%s";
+    private static final String BY_CITY_URL = "/weather?q=%s";
+    private static final String BY_CITY_ID_URL = "/weather?id=%s";
+    private static final String BY_COORDINATES_URL = "/weather?lat=%s&lon=%s";
+    private static final String BY_ZIP_CODE_URL = "/weather?zip=%s";
     private static final String UNITS_PARAMETER_NAME = "&units=%s";
     private static final String LANG_PARAMETER_NAME = "&lang=%s";
     private static final String API_KEY_PARAMETER_NAME = "&appid=%s";
@@ -29,9 +29,9 @@ public class OpenWeatherMapClientImpl implements OpenWeatherMapClient {
     private final RestTemplate restTemplate;
     private final OwmExceptionHandler owmExceptionHandler;
 
-    public OpenWeatherMapClientImpl(OwmConfig owmConfig,
-                                    RestTemplate restTemplate,
-                                    OwmExceptionHandler owmExceptionHandler) {
+    public OpenWeatherMapCurrentClientImpl(OwmConfig owmConfig,
+                                           RestTemplate restTemplate,
+                                           OwmExceptionHandler owmExceptionHandler) {
         this.owmConfig = owmConfig;
         this.restTemplate = restTemplate;
         this.owmExceptionHandler = owmExceptionHandler;
@@ -51,7 +51,7 @@ public class OpenWeatherMapClientImpl implements OpenWeatherMapClient {
     }
 
     @Override
-    public CurrentWeather getCurrentWeatherByCityId(String cityId, String units, String lang) {
+    public CurrentWeather getCurrentWeatherByCityId(int cityId, String units, String lang) {
         try {
             return restTemplate.getForEntity(constructUrl(owmConfig.getCurrentWeatherUrl()
                     + String.format(BY_CITY_ID_URL, cityId), units, lang), CurrentWeather.class).getBody();
@@ -77,7 +77,7 @@ public class OpenWeatherMapClientImpl implements OpenWeatherMapClient {
     }
 
     @Override
-    public CurrentWeather getCurrentWeatherByZipCode(String zipCode, String units, String lang) {
+    public CurrentWeather getCurrentWeatherByZipCode(int zipCode, String units, String lang) {
         try {
             return restTemplate.getForEntity(constructUrl(owmConfig.getCurrentWeatherUrl()
                     + String.format(BY_ZIP_CODE_URL, zipCode), units, lang), CurrentWeather.class).getBody();

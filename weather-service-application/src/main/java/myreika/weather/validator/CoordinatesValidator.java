@@ -1,21 +1,21 @@
 package myreika.weather.validator;
 
+import myreika.weather.domain.Coordinates;
 import myreika.weather.dto.CoordinatesDto;
 import myreika.weather.exception.ValidationException;
 import myreika.weather.exception.error.ValidationError;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CoordinatesValidator implements Validator<CoordinatesDto> {
+public class CoordinatesValidator implements Validator<Coordinates> {
 
     private static final double LATITUDE_MIN_VALUE = -90;
     private static final double LATITUDE_MAX_VALUE = 90;
     private static final double LONGITUDE_MIN_VALUE = -180;
     private static final double LONGITUDE_MAX_VALUE = 180;
 
-
     @Override
-    public void validate(CoordinatesDto coordinatesDto) {
+    public void validate(Coordinates coordinatesDto) {
         if (coordinatesDto == null || !isValidLatitude(coordinatesDto.getLatitude()) || !isValidLongitude(coordinatesDto.getLongitude())) {
             throw new ValidationException(ValidationError.INVALID_COORDINATES);
         }

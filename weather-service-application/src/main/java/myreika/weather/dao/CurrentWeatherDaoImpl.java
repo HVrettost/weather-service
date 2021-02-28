@@ -1,6 +1,7 @@
 package myreika.weather.dao;
 
-import myreika.weather.client.OpenWeatherMapClient;
+import myreika.weather.client.OpenWeatherMapCurrentClient;
+import myreika.weather.domain.Coordinates;
 import myreika.weather.dto.CurrentWeatherDto;
 import myreika.weather.dto.owm.current.CurrentWeather;
 
@@ -10,36 +11,36 @@ import org.springframework.stereotype.Component;
 @Component
 public class CurrentWeatherDaoImpl implements CurrentWeatherDao {
 
-    private final OpenWeatherMapClient openWeatherMapClient;
+    private final OpenWeatherMapCurrentClient openWeatherMapCurrentClient;
     private final ConversionService conversionService;
 
-    public CurrentWeatherDaoImpl(OpenWeatherMapClient openWeatherMapClient,
+    public CurrentWeatherDaoImpl(OpenWeatherMapCurrentClient openWeatherMapCurrentClient,
                                  ConversionService conversionService) {
-        this.openWeatherMapClient = openWeatherMapClient;
+        this.openWeatherMapCurrentClient = openWeatherMapCurrentClient;
         this.conversionService = conversionService;
     }
 
     @Override
     public CurrentWeatherDto getCurrentWeatherByCity(String city, String units, String lang) {
-        CurrentWeather currentWeather = openWeatherMapClient.getCurrentWeatherByCity(city, units, lang);
+        CurrentWeather currentWeather = openWeatherMapCurrentClient.getCurrentWeatherByCity(city, units, lang);
         return conversionService.convert(currentWeather, CurrentWeatherDto.class);
     }
 
     @Override
-    public CurrentWeatherDto getCurrentWeatherByCityId(String cityId, String units, String lang) {
-        CurrentWeather currentWeather = openWeatherMapClient.getCurrentWeatherByCityId(cityId, units, lang);
+    public CurrentWeatherDto getCurrentWeatherByCityId(int cityId, String units, String lang) {
+        CurrentWeather currentWeather = openWeatherMapCurrentClient.getCurrentWeatherByCityId(cityId, units, lang);
         return conversionService.convert(currentWeather, CurrentWeatherDto.class);
     }
 
     @Override
-    public CurrentWeatherDto getCurrentWeatherByCoordinates(double latitude, double longitude, String units, String lang) {
-        CurrentWeather currentWeather = openWeatherMapClient.getCurrentWeatherByCoordinates(latitude, longitude, units, lang);
+    public CurrentWeatherDto getCurrentWeatherByCoordinates(Coordinates coordinates, String units, String lang) {
+        CurrentWeather currentWeather = openWeatherMapCurrentClient.getCurrentWeatherByCoordinates(coordinates.getLatitude(), coordinates.getLongitude(), units, lang);
         return conversionService.convert(currentWeather, CurrentWeatherDto.class);
     }
 
     @Override
-    public CurrentWeatherDto getCurrentWeatherByZipCode(String zipCode, String units, String lang) {
-        CurrentWeather currentWeather = openWeatherMapClient.getCurrentWeatherByZipCode(zipCode, units, lang);
+    public CurrentWeatherDto getCurrentWeatherByZipCode(int zipCode, String units, String lang) {
+        CurrentWeather currentWeather = openWeatherMapCurrentClient.getCurrentWeatherByZipCode(zipCode, units, lang);
         return conversionService.convert(currentWeather, CurrentWeatherDto.class);
     }
 }

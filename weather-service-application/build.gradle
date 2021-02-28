@@ -17,6 +17,7 @@ mainClassName = 'myreika.weather.app.WeatherApplication'
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'com.google.guava:guava:30.1-jre'
+    implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.3.9'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

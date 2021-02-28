@@ -18,7 +18,7 @@ public interface CurrentWeatherApi {
                                                               @RequestParam(value = "lang", required = false) String lang);
 
     @GetMapping(value = "/city-id/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<CurrentWeatherDto> getCurrentWeatherByCityId(@PathVariable(value = "id") String cityId,
+    ResponseEntity<CurrentWeatherDto> getCurrentWeatherByCityId(@PathVariable(value = "id") int cityId,
                                                                 @RequestParam(value = "units", required = false) String units,
                                                                 @RequestParam(value = "lang", required = false) String lang);
 
@@ -29,10 +29,7 @@ public interface CurrentWeatherApi {
                                                                      @RequestParam(value = "lang", required = false) String lang);
 
     @GetMapping(value = "/zip-code/{code}", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<CurrentWeatherDto> getCurrentWeatherByZipCode(@PathVariable(value = "code") String zipCode,
+    ResponseEntity<CurrentWeatherDto> getCurrentWeatherByZipCode(@PathVariable(value = "code") int zipCode,
                                                                  @RequestParam(value = "units", required = false) String units,
                                                                  @RequestParam(value = "lang", required = false) String lang);
-
-
-
 }

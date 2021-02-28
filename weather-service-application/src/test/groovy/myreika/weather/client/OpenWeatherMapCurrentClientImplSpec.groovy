@@ -7,18 +7,18 @@ import spock.lang.Ignore
 import spock.lang.Specification
 
 @Ignore
-class OpenWeatherMapClientImplSpec extends Specification {
+class OpenWeatherMapCurrentClientImplSpec extends Specification {
 
     OwmConfig owmConfig
     RestTemplate restTemplate
     OwmExceptionHandler owmExceptionHandler
-    OpenWeatherMapClient openWeatherMapClient
+    OpenWeatherMapCurrentClient openWeatherMapClient
 
     def setup() {
         owmConfig = Mock()
         restTemplate = Mock()
         restTemplate = Mock()
-        openWeatherMapClient = new OpenWeatherMapClientImpl(owmConfig, restTemplate, owmExceptionHandler)
+        openWeatherMapClient = new OpenWeatherMapCurrentClientImpl(owmConfig, restTemplate, owmExceptionHandler)
     }
 
     def "Should make call to get current weather data with no optional parameter"() {

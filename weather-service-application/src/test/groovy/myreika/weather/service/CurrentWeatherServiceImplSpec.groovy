@@ -2,12 +2,13 @@ package myreika.weather.service
 
 import myreika.weather.dao.CurrentWeatherDao
 import myreika.weather.dto.CurrentWeatherDto
+
 import myreika.weather.validator.CityIdValidator
 import myreika.weather.validator.CityValidator
 import myreika.weather.validator.CoordinatesValidator
 import myreika.weather.validator.LanguageValidator
 import myreika.weather.validator.UnitsValidator
-import myreika.weather.validator.ZipCodeValidator
+
 import spock.lang.Specification
 
 class CurrentWeatherServiceImplSpec extends Specification {
@@ -18,7 +19,6 @@ class CurrentWeatherServiceImplSpec extends Specification {
     CityValidator cityValidator
     CityIdValidator cityIdValidator
     CoordinatesValidator coordinatesValidator
-    ZipCodeValidator zipCodeValidator
     CurrentWeatherService currentWeatherService
 
 
@@ -29,8 +29,7 @@ class CurrentWeatherServiceImplSpec extends Specification {
         cityValidator = Mock()
         cityIdValidator = Mock()
         coordinatesValidator = Mock()
-        zipCodeValidator = Mock()
-        currentWeatherService = new CurrentWeatherServiceImpl(currentWeatherDao, unitsValidator, languageValidator, cityValidator, cityIdValidator, coordinatesValidator, zipCodeValidator)
+        currentWeatherService = new CurrentWeatherServiceImpl(currentWeatherDao, unitsValidator, languageValidator, cityValidator, cityIdValidator, coordinatesValidator)
     }
 
     def "Should validate language, city and units parameter and delegate call to dao layer to fetch current weather"() {
