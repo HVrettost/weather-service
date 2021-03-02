@@ -7,6 +7,10 @@ A weather service that retrieves weather data from a 3rd party API(Open Weather 
 2) `./gradlew clean build` in root folder of the project in order to clean and build the project
 3) `./gradlew bootRun` to run project
 
+*Notice: in order to run different profiles go to application.properties file and change the property to
+- spring.profiles.active=prod -> grabs real data from Open Weather Map
+- spring.profiles.active=local-dev -> grabs mocked data from Wiremock in order to avoid actual call to OWM
+
 #Endpoints
 Daily forecast endpoint -> http://{{environment}}:{{port}}/api/weather/forecast/daily/coordinates?lat={latitude}&lon={longitude}&units={units}&lang={language}
 - example -> http://localhost:8700/api/weather/forecast/daily/coordinates?lat=37.971835&lon=23.737066&units=metric&lang=en
