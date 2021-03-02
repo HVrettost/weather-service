@@ -24,6 +24,11 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
+bootRun {
+    dependsOn(':weather-service-infrastructure:wiremockStart')
+    finalizedBy(':weather-service-infrastructure:wiremockStop')
+}
+
 pitest {
     reportDir file(project.buildDir.path + '/pitestReports')
     excludedClasses = ['myreika.weather.app.*',

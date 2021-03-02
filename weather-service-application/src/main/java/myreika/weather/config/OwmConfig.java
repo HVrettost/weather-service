@@ -8,7 +8,7 @@ import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @ConfigurationProperties(prefix = "myreika.weather.owm")
-@PropertySource("classpath:owm.properties")
+@PropertySource("classpath:${spring.profiles.active}/owm-${spring.profiles.active}.properties")
 @Getter
 @Setter
 public class OwmConfig {

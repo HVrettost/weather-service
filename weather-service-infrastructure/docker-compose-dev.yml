@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  weather-service:
+    build: .
+    ports:
+      - 8700:8700
+    container_name: weather-service
+  weather-mocks:
+    build: ./docker-mocks
+    ports:
+      - 8750:8080
+    container_name: weather-mocks

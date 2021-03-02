@@ -1,0 +1,15 @@
+group 'myreika.weather'
+version '1.0'
+
+task wiremockStart(type: Exec) {
+    commandLine 'docker-compose', '-f', 'docker-compose-dev.yml', 'up', '-d', 'weather-mocks'
+}
+
+task wiremockStop(type: Exec) {
+    commandLine 'docker-compose', '-f', 'docker-compose-dev', 'kill', 'weather-mocks'
+}
+
+task removeAllContainers(type: Exec) {
+    def scriptsDir = workingDir.toString() + '/scripts'
+    commandLine 'chmod', '+x', scriptsDir + '/force-remove-all-docker-container.sh', scriptsDir + '/force-remove-all-docker-container.sh'
+}
