@@ -1,4 +1,4 @@
-package myreika.weather.dto.domain;
+package myreika.weather.dto.metrics;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

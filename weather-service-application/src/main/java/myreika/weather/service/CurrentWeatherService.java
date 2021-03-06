@@ -1,7 +1,7 @@
 package myreika.weather.service;
 
 import myreika.weather.domain.Coordinates;
-import myreika.weather.dto.CurrentWeatherDto;
+import myreika.weather.dto.current.CurrentWeatherDto;
 
 public interface CurrentWeatherService {
 

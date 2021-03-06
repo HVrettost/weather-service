@@ -1,4 +1,4 @@
-package myreika.weather.dto;
+package myreika.weather.dto.current;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

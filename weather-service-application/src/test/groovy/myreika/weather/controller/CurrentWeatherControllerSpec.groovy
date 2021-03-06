@@ -1,7 +1,7 @@
 package myreika.weather.controller
 
 import myreika.weather.api.CurrentWeatherApi
-import myreika.weather.dto.CurrentWeatherDto
+import myreika.weather.dto.current.CurrentWeatherDto
 import myreika.weather.service.CurrentWeatherService
 import org.springframework.http.HttpStatus
 import spock.lang.Specification

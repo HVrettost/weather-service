@@ -1,8 +1,6 @@
 package myreika.weather.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import myreika.weather.domain.enums.metrics.ApiCallType;
 import org.bson.types.ObjectId;
@@ -12,8 +10,6 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Document("weather_api_call_metrics")
 public class WeatherApiCallMetrics {
 

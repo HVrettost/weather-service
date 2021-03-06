@@ -2,7 +2,7 @@ package myreika.weather.dao.service.owm;
 
 import myreika.weather.client.OpenWeatherMapCurrentClient;
 import myreika.weather.domain.Coordinates;
-import myreika.weather.dto.CurrentWeatherDto;
+import myreika.weather.dto.current.CurrentWeatherDto;
 import myreika.weather.dto.owm.current.CurrentWeather;
 
 import org.springframework.core.convert.ConversionService;

@@ -1,6 +1,6 @@
 package myreika.weather.api;
 
-import myreika.weather.dto.CurrentWeatherDto;
+import myreika.weather.dto.current.CurrentWeatherDto;
 
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

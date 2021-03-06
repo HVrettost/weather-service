@@ -26,6 +26,11 @@ public class WeatherApiCallMetricsDaoImpl implements WeatherApiCallMetricsDao {
     }
 
     private WeatherApiCallMetrics createDefaultApiCallMetrics(ApiCallType apiCallType) {
-        return new WeatherApiCallMetrics(null, apiCallType, 1);
+        WeatherApiCallMetrics weatherApiCallMetrics = new WeatherApiCallMetrics();
+        weatherApiCallMetrics.setId(null);
+        weatherApiCallMetrics.setApiCallType(apiCallType);
+        weatherApiCallMetrics.setTotalTimesCalled(1);
+
+        return weatherApiCallMetrics;
     }
 }

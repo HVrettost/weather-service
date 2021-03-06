@@ -1,4 +1,4 @@
-package myreika.weather.dto;
+package myreika.weather.dto.current;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CoordinatesDto {
+public class PrecipitationDto {
 
-    private double longitude;
-    private double latitude;
+    private double valueInMillimetres;
+    private String mode;
 }

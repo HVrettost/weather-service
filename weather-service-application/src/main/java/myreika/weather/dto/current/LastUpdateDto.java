@@ -1,16 +1,17 @@
-package myreika.weather.dto;
+package myreika.weather.dto.current;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.Instant;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PrecipitationDto {
+public class LastUpdateDto {
 
-    private double valueInMillimetres;
-    private String mode;
+    private Instant value;
 }

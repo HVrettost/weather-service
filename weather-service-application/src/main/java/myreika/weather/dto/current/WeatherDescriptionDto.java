@@ -1,4 +1,4 @@
-package myreika.weather.dto;
+package myreika.weather.dto.current;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,9 +9,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class WindInfoDto {
+public class WeatherDescriptionDto {
 
-    private double speed;
-    private int windDirectionInDegrees;
-    private double gust;
+    private String main;
+    private String description;
 }
