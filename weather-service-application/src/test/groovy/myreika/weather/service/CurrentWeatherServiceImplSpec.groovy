@@ -1,6 +1,6 @@
 package myreika.weather.service
 
-import myreika.weather.dao.CurrentWeatherDao
+import myreika.weather.dao.service.owm.CurrentWeatherDao
 import myreika.weather.dto.CurrentWeatherDto
 
 import myreika.weather.validator.CityIdValidator

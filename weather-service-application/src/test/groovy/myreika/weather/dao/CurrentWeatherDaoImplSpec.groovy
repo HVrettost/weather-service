@@ -1,6 +1,8 @@
 package myreika.weather.dao
 
 import myreika.weather.client.OpenWeatherMapCurrentClient
+import myreika.weather.dao.service.owm.CurrentWeatherDao
+import myreika.weather.dao.service.owm.CurrentWeatherDaoImpl
 import myreika.weather.dto.CurrentWeatherDto
 import myreika.weather.dto.owm.current.CurrentWeather
 import org.springframework.core.convert.ConversionService

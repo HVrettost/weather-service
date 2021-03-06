@@ -1,4 +1,4 @@
-package myreika.weather.dao;
+package myreika.weather.dao.service.owm;
 
 import myreika.weather.client.OpenWeatherMapCurrentClient;
 import myreika.weather.domain.Coordinates;
