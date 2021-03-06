@@ -20,13 +20,14 @@ dependencies {
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.3.9'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.security:spring-security-test'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 bootRun {
-    dependsOn(':weather-service-infrastructure:wiremockStart')
-    finalizedBy(':weather-service-infrastructure:wiremockStop')
+    dependsOn(':weather-service-infrastructure:wiremockStart', ':weather-service-infrastructure:mongoDbStart')
+    finalizedBy(':weather-service-infrastructure:wiremockStop', ':weather-service-infrastructure:mongoDbStop')
 }
 
 pitest {

@@ -1,6 +1,15 @@
 # weather-service
 A weather service that retrieves weather data from a 3rd party API(Open Weather Map), handles them and exposes API endpoints for usage
 
+#Technologies
+- Java 14
+- Docker
+- Mongo DB
+- Gradle 6.7
+- Spring Libraries: Boot, Security, Data
+- Libraries: Guava, Lombock
+- Wiremock
+
 #Build and Run project
 
 1) Install java 14 thrugh skdman (not mandatory but is the best tool to handle java versions without pain)

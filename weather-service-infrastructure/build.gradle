@@ -9,3 +9,11 @@ task wiremockStop(type: Exec) {
     commandLine 'docker-compose', '-f', 'docker-compose-dev.yml', 'kill', 'weather-mocks'
     commandLine 'docker', 'rmi', '-f', 'weather-service-infrastructure_weather-mocks'
 }
+
+task mongoDbStart(type: Exec) {
+    commandLine 'docker-compose', '-f', 'docker-compose-dev.yml', 'up', '-d', 'weather-database'
+}
+
+task mongoDbStop(type: Exec) {
+    commandLine 'docker-compose', '-f', 'docker-compose-dev.yml', 'kill', 'weather-database'
+}

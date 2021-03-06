@@ -2,11 +2,22 @@ version: "3.9"
 services:
   weather-service:
     build: .
+    container_name: weather-service
     ports:
       - 8700:8700
-    container_name: weather-service
+
   weather-mocks:
     build: ./docker-mocks
+    container_name: weather-mocks
     ports:
       - 8750:8080
-    container_name: weather-mocks
+
+  weather-database:
+    image: mongo:3.6
+    container_name: weather-database
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongo_user
+      MONGO_INITDB_ROOT_PASSWORD: mongo_password
+      MONGO_INITDB_DATABASE: weather_db
+    ports:
+      - 27017:27017
