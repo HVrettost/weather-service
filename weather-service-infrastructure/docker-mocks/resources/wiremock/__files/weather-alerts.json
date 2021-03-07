@@ -1,0 +1,50 @@
+{
+  "lat":55.7558,
+  "lon":37.6173,
+  "timezone":"Europe/Moscow",
+  "timezone_offset":10800,
+  "alerts":[
+    {
+      "sender_name":"",
+      "event":"Other dangers",
+      "start":1615082400,
+      "end":1615255200,
+      "description":""
+    },
+    {
+      "sender_name":"",
+      "event":"Прочие опасности",
+      "start":1615082400,
+      "end":1615255200,
+      "description":"метель, гололедица"
+    },
+    {
+      "sender_name":"",
+      "event":"Wind",
+      "start":1615075200,
+      "end":1615248000,
+      "description":""
+    },
+    {
+      "sender_name":"",
+      "event":"Snow",
+      "start":1615053600,
+      "end":1615140000,
+      "description":""
+    },
+    {
+      "sender_name":"",
+      "event":"Снег",
+      "start":1615053600,
+      "end":1615140000,
+      "description":"Снег"
+    },
+    {
+      "sender_name":"",
+      "event":"Ветер",
+      "start":1615075200,
+      "end":1615248000,
+      "description":"порывы 15-20"
+    }
+  ]
+}

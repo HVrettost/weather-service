@@ -1,10 +1,10 @@
 package myreika.weather.converter;
 
-import myreika.weather.dto.forecast.DailyDto;
-import myreika.weather.dto.forecast.FeelsLikeDto;
+import myreika.weather.dto.forecast.daily.DailyDto;
+import myreika.weather.dto.forecast.daily.FeelsLikeDto;
 import myreika.weather.dto.forecast.WeatherDto;
-import myreika.weather.dto.forecast.TemperatureDto;
-import myreika.weather.dto.forecast.DailyForecastDto;
+import myreika.weather.dto.forecast.daily.TemperatureDto;
+import myreika.weather.dto.forecast.daily.DailyForecastDto;
 
 import myreika.weather.dto.owm.forecast.daily.Temperature;
 import myreika.weather.dto.owm.forecast.daily.FeelsLike;
@@ -18,12 +18,12 @@ import org.springframework.stereotype.Component;
 import java.util.stream.Collectors;
 
 @Component
-public class DailyForecastToDailyForecastDtoConverter implements Converter<DailyForecast, DailyForecastDto> {
+public class DailyForecastConverter implements Converter<DailyForecast, DailyForecastDto> {
 
     private final ModelMapper modelMapper;
     private final EpochToDateTimeConverter epochToDateTimeConverter;
 
-    public DailyForecastToDailyForecastDtoConverter(ModelMapper modelMapper, EpochToDateTimeConverter epochToDateTimeConverter) {
+    public DailyForecastConverter(ModelMapper modelMapper, EpochToDateTimeConverter epochToDateTimeConverter) {
         this.modelMapper = modelMapper;
         this.epochToDateTimeConverter = epochToDateTimeConverter;
     }

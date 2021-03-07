@@ -1,4 +1,4 @@
-package myreika.weather.dto.owm.forecast.daily;
+package myreika.weather.dto.owm.forecast;
 
 import lombok.Getter;
 import lombok.Setter;

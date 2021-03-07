@@ -1,0 +1,21 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/onecall",
+    "queryParameters": {
+      "exclude": {
+        "equalTo": "current,hourly,daily,alerts"
+      },
+      "appid": {
+        "equalTo": "c5bca6977c807a27776c8a36988e68c3"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "minutely-forecast.json",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

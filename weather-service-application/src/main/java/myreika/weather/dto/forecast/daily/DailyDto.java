@@ -1,7 +1,8 @@
-package myreika.weather.dto.forecast;
+package myreika.weather.dto.forecast.daily;
 
 import lombok.Getter;
 import lombok.Setter;
+import myreika.weather.dto.forecast.WeatherDto;
 
 import java.time.Instant;
 import java.util.List;
