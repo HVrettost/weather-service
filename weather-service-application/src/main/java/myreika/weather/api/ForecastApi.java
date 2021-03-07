@@ -12,20 +12,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/api/weather/forecast")
 public interface ForecastApi {
 
-    @GetMapping(value = "daily/coordinates", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "daily", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<DailyForecastDto> getDailyForecastByCoordinates(@RequestParam(value = "lat") double latitude,
                                                                    @RequestParam(value = "lon") double longitude,
                                                                    @RequestParam(value = "units", required = false) String units,
                                                                    @RequestParam(value = "lang", required = false) String lang);
 
-    @GetMapping(value = "hourly/coordinates", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "hourly", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<HourlyForecastDto> getHourlyForecastByCoordinates(@RequestParam(value = "lat") double latitude,
                                                                      @RequestParam(value = "lon") double longitude,
                                                                      @RequestParam(value = "units", required = false) String units,
                                                                      @RequestParam(value = "lang", required = false) String lang);
 
 
-    @GetMapping(value = "minutely/coordinates", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "minutely", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<MinutelyForecastDto> getMinutelyForecastByCoordinates(@RequestParam(value = "lat") double latitude,
                                                                          @RequestParam(value = "lon") double longitude,
                                                                          @RequestParam(value = "units", required = false) String units,
