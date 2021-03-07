@@ -9,23 +9,286 @@
 			"name": "Get current weather by city",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8080/api/weather/current?city=Athens",
+					"raw": "http://{{environment}}:{{port}}/api/weather/current/city/Athens?units=metric&lang=en",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{environment}}"
 					],
-					"port": "8080",
+					"port": "{{port}}",
 					"path": [
 						"api",
 						"weather",
-						"current"
+						"current",
+						"city",
+						"Athens"
 					],
 					"query": [
 						{
-							"key": "city",
-							"value": "Athens"
+							"key": "units",
+							"value": "metric"
+						},
+						{
+							"key": "lang",
+							"value": "en"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get current weather by city id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{environment}}:{{port}}/api/weather/current/city-id/2172797?units=metric&lang=en",
+					"protocol": "http",
+					"host": [
+						"{{environment}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"weather",
+						"current",
+						"city-id",
+						"2172797"
+					],
+					"query": [
+						{
+							"key": "units",
+							"value": "metric"
+						},
+						{
+							"key": "lang",
+							"value": "en"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get current weather by zip code",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{environment}}:{{port}}/api/weather/current/zip-code/94040?units=metric&lang=en",
+					"protocol": "http",
+					"host": [
+						"{{environment}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"weather",
+						"current",
+						"zip-code",
+						"94040"
+					],
+					"query": [
+						{
+							"key": "units",
+							"value": "metric"
+						},
+						{
+							"key": "lang",
+							"value": "en"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get current weather by coordinates",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{environment}}:{{port}}/api/weather/current/coordinates?latitude=37.971835&longitude=23.737066&lang=en",
+					"protocol": "http",
+					"host": [
+						"{{environment}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"weather",
+						"current",
+						"coordinates"
+					],
+					"query": [
+						{
+							"key": "latitude",
+							"value": "37.971835"
+						},
+						{
+							"key": "longitude",
+							"value": "23.737066"
+						},
+						{
+							"key": "lang",
+							"value": "en"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Daily Forecast",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{environment}}:{{port}}/api/weather/forecast/daily?lat=37.971835&lon=23.737066",
+					"protocol": "http",
+					"host": [
+						"{{environment}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"weather",
+						"forecast",
+						"daily"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "37.971835"
+						},
+						{
+							"key": "lon",
+							"value": "23.737066"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Hourly Forecast",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{environment}}:{{port}}/api/weather/forecast/hourly?lat=37.971835&lon=23.737066&lang=en",
+					"protocol": "http",
+					"host": [
+						"{{environment}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"weather",
+						"forecast",
+						"hourly"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "37.971835"
+						},
+						{
+							"key": "lon",
+							"value": "23.737066"
+						},
+						{
+							"key": "lang",
+							"value": "en"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Minutely Forecast",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{environment}}:{{port}}/api/weather/forecast/minutely?lat=37.971835&lon=23.737066&lang=en&units=metric",
+					"protocol": "http",
+					"host": [
+						"{{environment}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"weather",
+						"forecast",
+						"minutely"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "37.971835"
+						},
+						{
+							"key": "lon",
+							"value": "23.737066"
+						},
+						{
+							"key": "lang",
+							"value": "en"
+						},
+						{
+							"key": "units",
+							"value": "metric"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get weather alerts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{environment}}:{{port}}/api/weather/alerts?lat=37.971835&lon=23.737066&lang=es",
+					"protocol": "http",
+					"host": [
+						"{{environment}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"weather",
+						"alerts"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "37.971835"
+						},
+						{
+							"key": "lon",
+							"value": "23.737066"
+						},
+						{
+							"key": "lang",
+							"value": "es"
 						}
 					]
 				}

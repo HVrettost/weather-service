@@ -2,10 +2,13 @@
   "priority": 2,
   "request": {
     "method": "GET",
-    "urlPath": "/onecall",
+    "urlPath": "/weather",
     "queryParameters": {
-      "exclude": {
-        "equalTo": "current,hourly,daily,alerts"
+      "lat": {
+        "matches": "[0-9]+\\.[0-9]+"
+      },
+      "lon": {
+        "matches": "[0-9]+\\.[0-9]+"
       },
       "appid": {
         "equalTo": "c5bca6977c807a27776c8a36988e68c3"
@@ -14,7 +17,7 @@
   },
   "response": {
     "status": 200,
-    "bodyFileName": "minutely-forecast.json",
+    "bodyFileName": "current-weather-by-coordinates.json",
     "headers": {
       "Content-Type": "application/json"
     }

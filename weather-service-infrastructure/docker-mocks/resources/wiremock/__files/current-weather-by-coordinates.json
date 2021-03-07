@@ -1,0 +1,43 @@
+{
+  "coord":{
+    "lon":23.7371,
+    "lat":37.9718
+  },
+  "weather":[
+    {
+      "id":803,
+      "main":"Clouds",
+      "description":"broken clouds",
+      "icon":"04d"
+    }
+  ],
+  "base":"stations",
+  "main":{
+    "temp":285.11,
+    "feels_like":278.02,
+    "temp_min":284.26,
+    "temp_max":285.93,
+    "pressure":1024,
+    "humidity":58
+  },
+  "visibility":10000,
+  "wind":{
+    "speed":8.23,
+    "deg":50
+  },
+  "clouds":{
+    "all":75
+  },
+  "dt":1615117194,
+  "sys":{
+    "type":1,
+    "id":6612,
+    "country":"GR",
+    "sunrise":1615092500,
+    "sunset":1615134245
+  },
+  "timezone":7200,
+  "id":8223990,
+  "name":"Kolonaki",
+  "cod":200
+}
