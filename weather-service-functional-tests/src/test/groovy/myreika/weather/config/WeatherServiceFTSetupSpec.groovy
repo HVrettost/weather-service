@@ -1,20 +1,20 @@
 package myreika.weather.config
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.springframework.web.client.RestTemplate
+import org.springframework.boot.test.web.client.TestRestTemplate
 import spock.lang.Shared
 import spock.lang.Specification
 
 class WeatherServiceFTSetupSpec extends Specification {
 
     @Shared
-    RestTemplate restTemplate
+    TestRestTemplate restTemplate
 
     @Shared
     ObjectMapper objectMapper
 
     def setupSpec() {
-        restTemplate = new RestTemplate()
+        restTemplate = new TestRestTemplate()
         objectMapper = new ObjectMapper()
     }
 }
