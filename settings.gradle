@@ -2,4 +2,5 @@ rootProject.name = 'weather-service'
 include 'weather-service-application'
 include 'weather-service-quality-check'
 include 'weather-service-infrastructure'
+include 'weather-service-functional-tests'
 

@@ -28,19 +28,19 @@
         <exclude name="NoWildcardImports"/>
     </ruleset-ref>
     <ruleset-ref path='rulesets/naming.xml'>
-        <rule-config name='ClassName'>
+        <rule-myreika.weather.config name='ClassName'>
             <property name='regex' value='^[A-Z][\$a-zA-Z0-9]*$'/>
-        </rule-config>
-        <rule-config name='FieldName'>
+        </rule-myreika.weather.config>
+        <rule-myreika.weather.config name='FieldName'>
             <property name='finalRegex' value='^[a-z][a-zA-Z0-9]*$'/>
             <property name='staticFinalRegex' value='^logger$|^[A-Z][A-Z_0-9]*$|^serialVersionUID$'/>
-        </rule-config>
-        <rule-config name='MethodName'>
+        </rule-myreika.weather.config>
+        <rule-myreika.weather.config name='MethodName'>
             <property name='regex' value='^[a-z][\$_a-zA-Z0-9]*$|^.*\s.*$'/>
-        </rule-config>
-        <rule-config name='VariableName'>
+        </rule-myreika.weather.config>
+        <rule-myreika.weather.config name='VariableName'>
             <property name='finalRegex' value='^[a-z][a-zA-Z0-9]*$'/>
-        </rule-config>
+        </rule-myreika.weather.config>
         <exclude name="ConfusingMethodName"/>
         <exclude name="FactoryMethodName"/>
         <exclude name="ClassNameSameAsSuperclass"/>

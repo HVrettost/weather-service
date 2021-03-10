@@ -26,7 +26,7 @@
     <!--
         If you set the basedir property below, then all reported file
         names will be relative to the specified directory. See
-        http://checkstyle.sourceforge.net/5.x/config.html#Checker
+        http://checkstyle.sourceforge.net/5.x/myreika.weather.config.html#Checker
         <property name="basedir" value="${basedir}"/>
     -->
 

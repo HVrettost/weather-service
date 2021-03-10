@@ -6,7 +6,7 @@ import myreika.weather.exception.ValidationException;
 import myreika.weather.exception.error.ValidationError;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
+import java.util.stream.Stream;
 
 @Component
 public class LanguageValidator implements Validator<String> {
@@ -17,7 +17,7 @@ public class LanguageValidator implements Validator<String> {
             return;
         }
 
-        if (Arrays.stream(Language.values()).noneMatch(l -> l.getValue().equals(language))) {
+        if (Stream.of(Language.values()).noneMatch(l -> l.getValue().equals(language))) {
             throw new ValidationException(ValidationError.INVALID_LANGUAGE);
         }
     }
