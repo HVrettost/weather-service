@@ -1,11 +1,17 @@
 {
-  "priority": 3,
+  "priority": 2,
   "request": {
     "method": "GET",
     "urlPath": "/onecall",
     "queryParameters": {
       "exclude": {
-        "equalTo": "current,minutely,hourly,daily"
+        "equalTo": "current,minutely,hourly,alerts"
+      },
+      "lat": {
+        "equalTo": "-57.908789"
+      },
+      "lon": {
+        "equalTo": "89.909899"
       },
       "appid": {
         "equalTo": "dummy-owm-app-id"
@@ -13,8 +19,8 @@
     }
   },
   "response": {
-    "status": 200,
-    "bodyFileName": "alerts/weather-alerts.json",
+    "status": 404,
+    "bodyFileName": "error/error-location-not-found.json",
     "headers": {
       "Content-Type": "application/json"
     }

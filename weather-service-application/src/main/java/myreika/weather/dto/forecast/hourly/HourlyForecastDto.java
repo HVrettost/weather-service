@@ -12,6 +12,6 @@ public class HourlyForecastDto {
     private double latitude;
     private double longitude;
     private String timezone;
-    private long timezoneOffset;
+    private long timezoneOffsetInSeconds;
     private List<HourlyDto> hourly;
 }

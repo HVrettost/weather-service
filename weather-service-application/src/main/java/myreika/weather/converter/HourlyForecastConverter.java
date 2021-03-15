@@ -28,7 +28,7 @@ public class HourlyForecastConverter implements Converter<HourlyForecast, Hourly
         hourlyForecastDto.setLatitude(hourlyForecast.getLatitude());
         hourlyForecastDto.setLongitude(hourlyForecast.getLongitude());
         hourlyForecastDto.setTimezone(hourlyForecast.getTimezone());
-        hourlyForecast.setTimezoneOffset(hourlyForecast.getTimezoneOffset());
+        hourlyForecastDto.setTimezoneOffsetInSeconds(hourlyForecast.getTimezoneOffset());
         hourlyForecastDto.setHourly(hourlyForecast.getHourly()
                 .stream()
                 .map(this::toHourlyDto)

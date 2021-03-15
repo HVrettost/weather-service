@@ -1,5 +1,5 @@
 {
-  "priority": 3,
+  "priority": 2,
   "request": {
     "method": "GET",
     "urlPath": "/onecall",
@@ -7,14 +7,20 @@
       "exclude": {
         "equalTo": "current,minutely,hourly,daily"
       },
+      "lat": {
+        "equalTo": "-70.9"
+      },
+      "lon": {
+        "equalTo": "150.9"
+      },
       "appid": {
         "equalTo": "dummy-owm-app-id"
       }
     }
   },
   "response": {
-    "status": 200,
-    "bodyFileName": "alerts/weather-alerts.json",
+    "status": 429,
+    "bodyFileName": "error/error-api-calls-exceeded.json",
     "headers": {
       "Content-Type": "application/json"
     }

@@ -21,10 +21,10 @@ public class CoordinatesValidator implements Validator<Coordinates> {
     }
 
     private boolean isValidLatitude(double latitude) {
-        return latitude > LATITUDE_MIN_VALUE && latitude < LATITUDE_MAX_VALUE;
+        return latitude >= LATITUDE_MIN_VALUE && latitude <= LATITUDE_MAX_VALUE;
     }
 
     private boolean isValidLongitude(double longitude) {
-        return longitude > LONGITUDE_MIN_VALUE && longitude  < LONGITUDE_MAX_VALUE;
+        return longitude >= LONGITUDE_MIN_VALUE && longitude  <= LONGITUDE_MAX_VALUE;
     }
 }

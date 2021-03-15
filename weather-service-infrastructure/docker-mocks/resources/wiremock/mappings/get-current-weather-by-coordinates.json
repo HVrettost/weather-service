@@ -1,5 +1,5 @@
 {
-  "priority": 2,
+  "priority": 3,
   "request": {
     "method": "GET",
     "urlPath": "/weather",
@@ -11,13 +11,13 @@
         "matches": "[0-9]+\\.[0-9]+"
       },
       "appid": {
-        "equalTo": "c5bca6977c807a27776c8a36988e68c3"
+        "equalTo": "dummy-owm-app-id"
       }
     }
   },
   "response": {
     "status": 200,
-    "bodyFileName": "current-weather-by-coordinates.json",
+    "bodyFileName": "current-weather/current-weather-by-coordinates.json",
     "headers": {
       "Content-Type": "application/json"
     }

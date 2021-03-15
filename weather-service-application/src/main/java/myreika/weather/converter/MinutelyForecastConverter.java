@@ -24,7 +24,7 @@ public class MinutelyForecastConverter implements Converter<MinutelyForecast, Mi
         minutelyForecastDto.setLatitude(minutelyForecast.getLatitude());
         minutelyForecastDto.setLongitude(minutelyForecast.getLongitude());
         minutelyForecastDto.setTimezone(minutelyForecast.getTimezone());
-        minutelyForecastDto.setTimezoneOffset(minutelyForecast.getTimezoneOffset());
+        minutelyForecastDto.setTimezoneOffsetInSeconds(minutelyForecast.getTimezoneOffset());
         minutelyForecastDto.setMinutely(minutelyForecast.getMinutely()
                 .stream()
                 .map(this::toMinutelyDto)

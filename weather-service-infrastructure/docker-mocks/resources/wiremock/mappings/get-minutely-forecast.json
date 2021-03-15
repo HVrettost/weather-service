@@ -1,5 +1,5 @@
 {
-  "priority": 2,
+  "priority": 3,
   "request": {
     "method": "GET",
     "urlPath": "/onecall",
@@ -8,13 +8,13 @@
         "equalTo": "current,hourly,daily,alerts"
       },
       "appid": {
-        "equalTo": "c5bca6977c807a27776c8a36988e68c3"
+        "equalTo": "dummy-owm-app-id"
       }
     }
   },
   "response": {
     "status": 200,
-    "bodyFileName": "minutely-forecast.json",
+    "bodyFileName": "forecast/minutely-forecast.json",
     "headers": {
       "Content-Type": "application/json"
     }

@@ -24,7 +24,7 @@ public class WeatherAlertConverter implements Converter<WeatherAlerts, WeatherAl
         weatherAlertsDto.setLatitude(weatherAlerts.getLatitude());
         weatherAlertsDto.setLongitude(weatherAlerts.getLongitude());
         weatherAlertsDto.setTimezone(weatherAlerts.getTimezone());
-        weatherAlertsDto.setTimezoneOffset(weatherAlerts.getTimezoneOffset());
+        weatherAlertsDto.setTimezoneOffsetInSeconds(weatherAlerts.getTimezoneOffset());
         weatherAlertsDto.setAlerts(weatherAlerts.getAlerts()
                 .stream()
                 .map(this::toAlertDto)

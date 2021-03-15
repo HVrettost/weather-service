@@ -24,7 +24,8 @@ A weather service that retrieves weather data from a 3rd party API(Open Weather 
 
 #Useful Gradle tasks
 - `./gradlew wiremockStart` -> starts wiremock container and builds image (also starts automatically when invoking bootRun task which starts the server)
-- `./gradlew wiremockStop` -> stops wiremock container and removes image in order for the next wiremock container start to build mappings and files
+- `./gradlew wiremockStop` -> stops wiremock container and removes image in order for the next wiremock container start to build mappings and files.
+
 
 *Notice: If there is already a container that is running then run task `./gradlew wiremockStop` in order to remove container and image. This will take into account the new json files.
 
