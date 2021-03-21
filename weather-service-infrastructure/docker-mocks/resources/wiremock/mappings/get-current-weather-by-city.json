@@ -5,7 +5,7 @@
     "urlPath": "/weather",
     "queryParameters": {
       "q": {
-        "matches": "[A-Za-z]+"
+        "matches": "[A-Za-z ]+"
       },
       "appid": {
         "equalTo": "dummy-owm-app-id"
