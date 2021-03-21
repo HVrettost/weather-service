@@ -1,6 +1,6 @@
-package myreika.weather.core
+package myreika.weather.core.forecast
 
-import myreika.weather.actions.UserActions
+import myreika.weather.actions.ForecastUserActions
 import myreika.weather.config.WeatherServiceFTSetupSpec
 import org.springframework.boot.SpringBootConfiguration
 import org.springframework.boot.test.context.SpringBootTest
@@ -8,12 +8,12 @@ import spock.lang.Unroll
 
 @SpringBootConfiguration
 @SpringBootTest
-class WeatherAlertsSpec extends WeatherServiceFTSetupSpec implements UserActions {
+class MinutelyForecastSpec extends WeatherServiceFTSetupSpec implements ForecastUserActions {
 
     @Unroll
     def "Should return error message if units passed as parameter is invalid"() {
-        when: "a request is made to get the weather alerts for certain coordinates"
-            def response = getWeatherAlerts(restTemplate, 37.4641636, 23.4503526, units)
+        when: "a request is made to get the minutely forecast"
+            def response = getMinutelyForecast(restTemplate, 37.4641636, 23.4503526, units)
 
         then: 'error message is returned'
 
@@ -31,8 +31,8 @@ class WeatherAlertsSpec extends WeatherServiceFTSetupSpec implements UserActions
 
     @Unroll
     def "Should return error message if language passed as parameter is invalid"() {
-        when: "a request is made to get the weather alerts for certain coordinates"
-            def response = getWeatherAlerts(restTemplate, 37.4641636, 23.4503526, units, language)
+        when: "a request is made to get the minutely forecast"
+            def response = getMinutelyForecast(restTemplate, 37.4641636, 23.4503526, units, language)
 
         then: 'error message is returned'
 
@@ -54,8 +54,8 @@ class WeatherAlertsSpec extends WeatherServiceFTSetupSpec implements UserActions
 
     @Unroll
     def "Should return error message if coordinates passed as parameter are invalid"() {
-        when: "a request is made to get the weather alerts for certain coordinates"
-            def response = getWeatherAlerts(restTemplate, latitude as Double, longitude as Double)
+        when: "a request is made to get the minutely forecast"
+            def response = getMinutelyForecast(restTemplate, latitude as Double, longitude as Double)
 
         then: 'error message is returned'
             with(response) {
@@ -83,8 +83,8 @@ class WeatherAlertsSpec extends WeatherServiceFTSetupSpec implements UserActions
 
     @Unroll
     def "Should return 400 (BAD_REQUEST) if latitude or longitude are empty-null or not numbers"() {
-        when: "a request is made to get weather alerts for certain coordinates"
-            def response = getWeatherAlerts(restTemplate, latitude, longitude)
+        when: "a request is made to get the minutely forecast"
+            def response = getMinutelyForecast(restTemplate, latitude, longitude)
 
         then: 'error message is returned'
             assert response.status == 400
@@ -104,8 +104,8 @@ class WeatherAlertsSpec extends WeatherServiceFTSetupSpec implements UserActions
 
     @Unroll
     def "Should return successful response (200 OK) if latitude, longitude, units and language have valid values"() {
-        when: "a request is made to get the weather alerts for certain coordinates"
-            def response = getWeatherAlerts(restTemplate, latitude, longitude, units, language)
+        when: "a request is made to get the minutely forecast"
+            def response = getMinutelyForecast(restTemplate, latitude, longitude, units, language)
 
         then: 'successful response is returned'
             with (response) {
@@ -115,7 +115,7 @@ class WeatherAlertsSpec extends WeatherServiceFTSetupSpec implements UserActions
                     assert it["longitude"] == 37.6173
                     assert it["timezone"] == "Europe/Moscow"
                     assert it["timezoneOffsetInSeconds"] == 10800
-                    assert it["alerts"].size() == 6
+                    assert it["minutely"].size() == 61
                 }
             }
 
@@ -130,15 +130,15 @@ class WeatherAlertsSpec extends WeatherServiceFTSetupSpec implements UserActions
     }
 
     @Unroll
-    def "Should return error response third party service (OWM) throws exception because number of api calls were exceeded"() {
+    def "Should return error response third party service (OWM) throws exception because api key is not activated yet"() {
         when: "a request is made to get the minutely forecast"
-            def response = getWeatherAlerts(restTemplate, -70.90, 150.90)
+            def response = getMinutelyForecast(restTemplate, -50.908800, 179.909)
 
         then: 'error response is returned'
             with(response) {
                 assert status == 409
                 with (body) {
-                    assert message == 'number of api calls exceeded'
+                    assert message == 'api key not activated'
                     assert errorCode == 2000
                 }
             }

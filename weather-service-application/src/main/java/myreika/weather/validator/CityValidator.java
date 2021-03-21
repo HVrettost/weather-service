@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CityValidator implements Validator<String> {
 
-    private static final int CITY_MAXIMUM_LENGTH = 25;
+    private static final int CITY_MAXIMUM_LENGTH = 45;
 
     @Override
     public void validate(String city) {
