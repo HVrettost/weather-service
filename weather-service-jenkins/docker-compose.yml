@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  jenkins:
+    image: jenkinsci/blueocean
+    container_name: weather-jenkins
+    ports:
+      - 8080:8080
+      - 50000:50000
+      - 2376:2376
+    volumes:
+      - jenkins-data:/var/jenkins_home
+      - jenkins-docker-certs:/certs/client
+    environment:
+      - DOCKER_TLS_CERTDIR=/certs
+    privileged: true
+
+volumes:
+  jenkins-data:
+  jenkins-docker-certs:

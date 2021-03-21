@@ -3,4 +3,5 @@ include 'weather-service-application'
 include 'weather-service-quality-check'
 include 'weather-service-infrastructure'
 include 'weather-service-functional-tests'
+include 'weather-service-jenkins'
 
