@@ -3,7 +3,7 @@ version: "3.9"
 services:
   jenkins:
     image: jenkinsci/blueocean
-    container_name: weather-jenkins
+    container_name: weather_jenkins
     ports:
       - 8080:8080
       - 50000:50000
