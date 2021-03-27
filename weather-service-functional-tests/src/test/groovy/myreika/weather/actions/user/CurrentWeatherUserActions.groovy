@@ -1,4 +1,4 @@
-package myreika.weather.actions
+package myreika.weather.actions.user
 
 import myreika.weather.request.currentweather.CurrentWeatherByCityIdRequest
 import myreika.weather.request.currentweather.CurrentWeatherByCityRequest

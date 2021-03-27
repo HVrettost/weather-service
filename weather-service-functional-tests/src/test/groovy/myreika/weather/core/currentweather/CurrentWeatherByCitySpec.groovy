@@ -1,14 +1,18 @@
 package myreika.weather.core.currentweather
 
-import myreika.weather.actions.CurrentWeatherUserActions
 import myreika.weather.config.WeatherServiceFTSetupSpec
+import myreika.weather.domain.enums.metrics.ApiCallType
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.Configuration
 import spock.lang.Unroll
 
 @SpringBootTest
 @Configuration
-class CurrentWeatherByCitySpec extends WeatherServiceFTSetupSpec implements CurrentWeatherUserActions {
+class CurrentWeatherByCitySpec extends WeatherServiceFTSetupSpec {
+
+    def cleanup() {
+        systemActor.deleteApiCallMetricsByApiCallType(restTemplate, ApiCallType.CURRENT_WEATHER_BY_CITY)
+    }
 
     @Unroll
     def "Should return error message if units passed as parameter is invalid"() {
@@ -16,7 +20,7 @@ class CurrentWeatherByCitySpec extends WeatherServiceFTSetupSpec implements Curr
             def city = 'Athens'
 
         when: "a request is made to get the current weather by city name"
-            def response = getCurrentWeatherByCity(restTemplate, city, units)
+            def response = userActor.getCurrentWeatherByCity(restTemplate, city, units)
 
         then: 'error message is returned'
             with (response) {
@@ -37,7 +41,7 @@ class CurrentWeatherByCitySpec extends WeatherServiceFTSetupSpec implements Curr
             def city = 'Athens'
 
         when: "a request is made to get the current weather by city name"
-            def response = getCurrentWeatherByCity(restTemplate, city, units, language)
+            def response = userActor.getCurrentWeatherByCity(restTemplate, city, units, language)
 
         then: 'error message is returned'
 
@@ -63,7 +67,7 @@ class CurrentWeatherByCitySpec extends WeatherServiceFTSetupSpec implements Curr
             def city = 'a'.repeat(46)
 
         when: "a request is made to get the current weather by city name"
-            def response = getCurrentWeatherByCity(restTemplate, city)
+            def response = userActor.getCurrentWeatherByCity(restTemplate, city)
 
         then: 'error message is returned'
             with(response) {
@@ -81,7 +85,7 @@ class CurrentWeatherByCitySpec extends WeatherServiceFTSetupSpec implements Curr
             def city = ''
 
         when: "a request is made to get the current weather by city name"
-            def response = getCurrentWeatherByCity(restTemplate, city)
+            def response = userActor.getCurrentWeatherByCity(restTemplate, city)
 
         then: 'error message is returned'
             with(response) {
@@ -97,7 +101,7 @@ class CurrentWeatherByCitySpec extends WeatherServiceFTSetupSpec implements Curr
     @Unroll
     def "Should return successful response (200 OK) if city, units and language have valid values"() {
         when: "a request is made to get the daily forecast"
-            def response = getCurrentWeatherByCity(restTemplate, city, units, language)
+            def response = userActor.getCurrentWeatherByCity(restTemplate, city, units, language)
 
         then: 'successful response is returned'
             with (response) {
@@ -105,6 +109,12 @@ class CurrentWeatherByCitySpec extends WeatherServiceFTSetupSpec implements Curr
                 with (body) {
                     
                 }
+            }
+
+        and: 'entry for api call metric should be persisted in database'
+            with (systemActor.getApiCallMetricsByApiCallType(restTemplate, ApiCallType.CURRENT_WEATHER_BY_CITY).body) {
+                assert totalTimesCalled == 1
+                assert apiCallType == ApiCallType.CURRENT_WEATHER_BY_CITY.name()
             }
 
         where:

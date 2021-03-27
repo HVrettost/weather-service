@@ -1,19 +1,23 @@
 package myreika.weather.core.forecast
 
-import myreika.weather.actions.ForecastUserActions
 import myreika.weather.config.WeatherServiceFTSetupSpec
+import myreika.weather.domain.enums.metrics.ApiCallType
 import org.springframework.boot.SpringBootConfiguration
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Unroll
 
 @SpringBootConfiguration
 @SpringBootTest
-class HourlyForecastSpec extends WeatherServiceFTSetupSpec implements ForecastUserActions {
+class HourlyForecastSpec extends WeatherServiceFTSetupSpec {
+
+    def cleanup() {
+        systemActor.deleteApiCallMetricsByApiCallType(restTemplate, ApiCallType.HOURLY_FORECAST)
+    }
 
     @Unroll
     def "Should return error message if units passed as parameter is invalid"() {
         when: "a request is made to get the hourly forecast"
-            def response = getHourlyForecast(restTemplate, 37.4641636, 23.4503526, units)
+            def response = userActor.getHourlyForecast(restTemplate, 37.4641636, 23.4503526, units)
 
         then: 'error message is returned'
 
@@ -32,7 +36,7 @@ class HourlyForecastSpec extends WeatherServiceFTSetupSpec implements ForecastUs
     @Unroll
     def "Should return error message if language passed as parameter is invalid"() {
         when: "a request is made to get the hourly forecast"
-            def response = getHourlyForecast(restTemplate, 37.4641636, 23.4503526, units, language)
+            def response = userActor.getHourlyForecast(restTemplate, 37.4641636, 23.4503526, units, language)
 
         then: 'error message is returned'
 
@@ -55,7 +59,7 @@ class HourlyForecastSpec extends WeatherServiceFTSetupSpec implements ForecastUs
     @Unroll
     def "Should return error message if coordinates passed as parameter are invalid"() {
         when: "a request is made to get the hourly forecast"
-            def response = getHourlyForecast(restTemplate, latitude as Double, longitude as Double)
+            def response = userActor.getHourlyForecast(restTemplate, latitude as Double, longitude as Double)
 
         then: 'error message is returned'
             with(response) {
@@ -84,7 +88,7 @@ class HourlyForecastSpec extends WeatherServiceFTSetupSpec implements ForecastUs
     @Unroll
     def "Should return 400 (BAD_REQUEST) if latitude or longitude are empty-null or not numbers"() {
         when: "a request is made to get the hourly forecast"
-            def response = getHourlyForecast(restTemplate, latitude, longitude)
+            def response = userActor.getHourlyForecast(restTemplate, latitude, longitude)
 
         then: 'error message is returned'
             assert response.status == 400
@@ -105,7 +109,7 @@ class HourlyForecastSpec extends WeatherServiceFTSetupSpec implements ForecastUs
     @Unroll
     def "Should return successful response (200 OK) if latitude, longitude, units and language have valid values"() {
         when: "a request is made to get the hourly forecast"
-            def response = getHourlyForecast(restTemplate, latitude, longitude, units, language)
+            def response = userActor.getHourlyForecast(restTemplate, latitude, longitude, units, language)
 
         then: 'successful response is returned'
             with (response) {
@@ -117,6 +121,12 @@ class HourlyForecastSpec extends WeatherServiceFTSetupSpec implements ForecastUs
                     assert it["timezoneOffsetInSeconds"] == 7200
                     assert it["hourly"].size() == 48
                 }
+            }
+
+        and: 'entry for api call metric should be persisted in database'
+            with (systemActor.getApiCallMetricsByApiCallType(restTemplate, ApiCallType.HOURLY_FORECAST).body) {
+                assert totalTimesCalled == 1
+                assert apiCallType == ApiCallType.HOURLY_FORECAST.name()
             }
 
         where:
@@ -132,7 +142,7 @@ class HourlyForecastSpec extends WeatherServiceFTSetupSpec implements ForecastUs
     @Unroll
     def "Should return error response third party service (OWM) throws exception because it could not find coordinates"() {
         when: "a request is made to get the hourly forecast"
-            def response = getHourlyForecast(restTemplate, -70.908789, 91.909899)
+            def response = userActor.getHourlyForecast(restTemplate, -70.908789, 91.909899)
 
         then: 'error response is returned'
             with(response) {

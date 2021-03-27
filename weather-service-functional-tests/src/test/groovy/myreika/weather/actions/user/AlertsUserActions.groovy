@@ -1,4 +1,4 @@
-package myreika.weather.actions
+package myreika.weather.actions.user
 
 import myreika.weather.request.alerts.WeatherAlertsRequest
 import org.springframework.boot.test.web.client.TestRestTemplate

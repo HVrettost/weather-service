@@ -1,6 +1,5 @@
 package myreika.weather.repository;
 
-import myreika.weather.domain.enums.metrics.ApiCallType;
 import myreika.weather.entity.WeatherApiCallMetrics;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -10,7 +9,9 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface WeatherApiCallMetricsRepository extends MongoRepository<WeatherApiCallMetrics, ObjectId> {
+public interface WeatherApiCallMetricsTestRepository extends MongoRepository<WeatherApiCallMetrics, ObjectId> {
 
-    Optional<WeatherApiCallMetrics> findByApiCallType(@Param("apiCallType") ApiCallType apiCallType);
+    void deleteAllByApiCallType(@Param("apiCallType") String apiCallType);
+
+    Optional<WeatherApiCallMetrics> findByApiCallType(@Param("apiCallType") String apiCallType);
 }

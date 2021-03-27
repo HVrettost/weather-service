@@ -1,9 +1,8 @@
-package myreika.weather.actions
+package myreika.weather.actions.user
 
 import myreika.weather.request.forecast.DailyForecastRequest
 import myreika.weather.request.forecast.HourlyForecastRequest
 import myreika.weather.request.forecast.MinutelyForecastRequest
-import myreika.weather.request.alerts.WeatherAlertsRequest
 import org.springframework.boot.test.web.client.TestRestTemplate
 
 trait ForecastUserActions {

@@ -13,8 +13,16 @@ class WeatherServiceFTSetupSpec extends Specification {
     @Shared
     ObjectMapper objectMapper
 
+    @Shared
+    myreika.weather.actor.UserActor userActor
+
+    @Shared
+    myreika.weather.actor.SystemActor systemActor
+
     def setupSpec() {
         restTemplate = new TestRestTemplate()
         objectMapper = new ObjectMapper()
+        userActor = new myreika.weather.actor.UserActor()
+        systemActor = new myreika.weather.actor.SystemActor()
     }
 }

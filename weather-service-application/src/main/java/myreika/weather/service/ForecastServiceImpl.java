@@ -10,7 +10,9 @@ import myreika.weather.dto.forecast.minutely.MinutelyForecastDto;
 import myreika.weather.validator.CoordinatesValidator;
 import myreika.weather.validator.LanguageValidator;
 import myreika.weather.validator.UnitsValidator;
+
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ForecastServiceImpl implements ForecastService {
@@ -34,24 +36,29 @@ public class ForecastServiceImpl implements ForecastService {
     }
 
     @Override
+    @Transactional
     public DailyForecastDto getDailyForecastByCoordinates(Coordinates coordinates, String units, String lang) {
         validateParameters(coordinates, units, lang);
-
         weatherApiCallMetricsDao.saveApiCallMetric(ApiCallType.DAILY_FORECAST);
 
         return forecastDao.getDailyForecastByCoordinates(coordinates, units, lang);
     }
 
     @Override
+    @Transactional
     public HourlyForecastDto getHourlyForecastByCoordinates(Coordinates coordinates, String units, String lang) {
         validateParameters(coordinates, units, lang);
+        weatherApiCallMetricsDao.saveApiCallMetric(ApiCallType.HOURLY_FORECAST);
 
         return forecastDao.getHourlyForecastByCoordinates(coordinates, units, lang);
     }
 
     @Override
+    @Transactional
     public MinutelyForecastDto getMinutelyForecastByCoordinates(Coordinates coordinates, String units, String lang) {
         validateParameters(coordinates, units, lang);
+        weatherApiCallMetricsDao.saveApiCallMetric(ApiCallType.MINUTELY_FORECAST);
+
         return forecastDao.getMinutelyForecastByCoordinates(coordinates, units, lang);
     }
 

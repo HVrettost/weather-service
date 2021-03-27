@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class WeatherAlertsController implements WeatherAlertsApi {
 
-
     private final WeatherAlertsService weatherAlertsService;
 
     public WeatherAlertsController(WeatherAlertsService weatherAlertsService) {

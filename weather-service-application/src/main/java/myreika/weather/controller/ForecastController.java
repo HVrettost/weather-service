@@ -6,6 +6,7 @@ import myreika.weather.dto.forecast.daily.DailyForecastDto;
 import myreika.weather.dto.forecast.hourly.HourlyForecastDto;
 import myreika.weather.dto.forecast.minutely.MinutelyForecastDto;
 import myreika.weather.service.ForecastService;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;

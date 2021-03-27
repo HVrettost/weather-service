@@ -1,22 +1,25 @@
 package myreika.weather.core.alerts
 
-import myreika.weather.actions.AlertsUserActions
 import myreika.weather.config.WeatherServiceFTSetupSpec
+import myreika.weather.domain.enums.metrics.ApiCallType
 import org.springframework.boot.SpringBootConfiguration
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Unroll
 
 @SpringBootConfiguration
 @SpringBootTest
-class WeatherAlertsSpec extends WeatherServiceFTSetupSpec implements AlertsUserActions {
+class WeatherAlertsSpec extends WeatherServiceFTSetupSpec {
+
+    def cleanup() {
+        systemActor.deleteApiCallMetricsByApiCallType(restTemplate, ApiCallType.WEATHER_ALERTS)
+    }
 
     @Unroll
     def "Should return error message if units passed as parameter is invalid"() {
         when: "a request is made to get the weather alerts for certain coordinates"
-            def response = getWeatherAlerts(restTemplate, 37.4641636, 23.4503526, units)
+            def response = userActor.getWeatherAlerts(restTemplate, 37.4641636, 23.4503526, units)
 
         then: 'error message is returned'
-
             with (response) {
                 assert status == 409
                 with (body) {
@@ -32,10 +35,9 @@ class WeatherAlertsSpec extends WeatherServiceFTSetupSpec implements AlertsUserA
     @Unroll
     def "Should return error message if language passed as parameter is invalid"() {
         when: "a request is made to get the weather alerts for certain coordinates"
-            def response = getWeatherAlerts(restTemplate, 37.4641636, 23.4503526, units, language)
+            def response = userActor.getWeatherAlerts(restTemplate, 37.4641636, 23.4503526, units, language)
 
         then: 'error message is returned'
-
             with(response) {
                 assert status == 409
                 with (body) {
@@ -55,7 +57,7 @@ class WeatherAlertsSpec extends WeatherServiceFTSetupSpec implements AlertsUserA
     @Unroll
     def "Should return error message if coordinates passed as parameter are invalid"() {
         when: "a request is made to get the weather alerts for certain coordinates"
-            def response = getWeatherAlerts(restTemplate, latitude as Double, longitude as Double)
+            def response = userActor.getWeatherAlerts(restTemplate, latitude as Double, longitude as Double)
 
         then: 'error message is returned'
             with(response) {
@@ -84,7 +86,7 @@ class WeatherAlertsSpec extends WeatherServiceFTSetupSpec implements AlertsUserA
     @Unroll
     def "Should return 400 (BAD_REQUEST) if latitude or longitude are empty-null or not numbers"() {
         when: "a request is made to get weather alerts for certain coordinates"
-            def response = getWeatherAlerts(restTemplate, latitude, longitude)
+            def response = userActor.getWeatherAlerts(restTemplate, latitude, longitude)
 
         then: 'error message is returned'
             assert response.status == 400
@@ -105,7 +107,7 @@ class WeatherAlertsSpec extends WeatherServiceFTSetupSpec implements AlertsUserA
     @Unroll
     def "Should return successful response (200 OK) if latitude, longitude, units and language have valid values"() {
         when: "a request is made to get the weather alerts for certain coordinates"
-            def response = getWeatherAlerts(restTemplate, latitude, longitude, units, language)
+            def response = userActor.getWeatherAlerts(restTemplate, latitude, longitude, units, language)
 
         then: 'successful response is returned'
             with (response) {
@@ -117,6 +119,12 @@ class WeatherAlertsSpec extends WeatherServiceFTSetupSpec implements AlertsUserA
                     assert it["timezoneOffsetInSeconds"] == 10800
                     assert it["alerts"].size() == 6
                 }
+            }
+
+        and: 'entry for api call metric should be persisted in database'
+            with (systemActor.getApiCallMetricsByApiCallType(restTemplate, ApiCallType.WEATHER_ALERTS).body) {
+                assert totalTimesCalled == 1
+                assert apiCallType == ApiCallType.WEATHER_ALERTS.name()
             }
 
         where:
@@ -132,7 +140,7 @@ class WeatherAlertsSpec extends WeatherServiceFTSetupSpec implements AlertsUserA
     @Unroll
     def "Should return error response third party service (OWM) throws exception because number of api calls were exceeded"() {
         when: "a request is made to get the minutely forecast"
-            def response = getWeatherAlerts(restTemplate, -70.90, 150.90)
+            def response = userActor.getWeatherAlerts(restTemplate, -70.90, 150.90)
 
         then: 'error response is returned'
             with(response) {

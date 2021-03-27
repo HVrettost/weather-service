@@ -1,19 +1,23 @@
 package myreika.weather.core.forecast
 
-import myreika.weather.actions.ForecastUserActions
 import myreika.weather.config.WeatherServiceFTSetupSpec
+import myreika.weather.domain.enums.metrics.ApiCallType
 import org.springframework.boot.SpringBootConfiguration
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Unroll
 
 @SpringBootConfiguration
 @SpringBootTest
-class MinutelyForecastSpec extends WeatherServiceFTSetupSpec implements ForecastUserActions {
+class MinutelyForecastSpec extends WeatherServiceFTSetupSpec {
+
+    def cleanup() {
+        systemActor.deleteApiCallMetricsByApiCallType(restTemplate, ApiCallType.MINUTELY_FORECAST)
+    }
 
     @Unroll
     def "Should return error message if units passed as parameter is invalid"() {
         when: "a request is made to get the minutely forecast"
-            def response = getMinutelyForecast(restTemplate, 37.4641636, 23.4503526, units)
+            def response = userActor.getMinutelyForecast(restTemplate, 37.4641636, 23.4503526, units)
 
         then: 'error message is returned'
 
@@ -32,7 +36,7 @@ class MinutelyForecastSpec extends WeatherServiceFTSetupSpec implements Forecast
     @Unroll
     def "Should return error message if language passed as parameter is invalid"() {
         when: "a request is made to get the minutely forecast"
-            def response = getMinutelyForecast(restTemplate, 37.4641636, 23.4503526, units, language)
+            def response = userActor.getMinutelyForecast(restTemplate, 37.4641636, 23.4503526, units, language)
 
         then: 'error message is returned'
 
@@ -55,7 +59,7 @@ class MinutelyForecastSpec extends WeatherServiceFTSetupSpec implements Forecast
     @Unroll
     def "Should return error message if coordinates passed as parameter are invalid"() {
         when: "a request is made to get the minutely forecast"
-            def response = getMinutelyForecast(restTemplate, latitude as Double, longitude as Double)
+            def response = userActor.getMinutelyForecast(restTemplate, latitude as Double, longitude as Double)
 
         then: 'error message is returned'
             with(response) {
@@ -84,7 +88,7 @@ class MinutelyForecastSpec extends WeatherServiceFTSetupSpec implements Forecast
     @Unroll
     def "Should return 400 (BAD_REQUEST) if latitude or longitude are empty-null or not numbers"() {
         when: "a request is made to get the minutely forecast"
-            def response = getMinutelyForecast(restTemplate, latitude, longitude)
+            def response = userActor.getMinutelyForecast(restTemplate, latitude, longitude)
 
         then: 'error message is returned'
             assert response.status == 400
@@ -105,7 +109,7 @@ class MinutelyForecastSpec extends WeatherServiceFTSetupSpec implements Forecast
     @Unroll
     def "Should return successful response (200 OK) if latitude, longitude, units and language have valid values"() {
         when: "a request is made to get the minutely forecast"
-            def response = getMinutelyForecast(restTemplate, latitude, longitude, units, language)
+            def response = userActor.getMinutelyForecast(restTemplate, latitude, longitude, units, language)
 
         then: 'successful response is returned'
             with (response) {
@@ -117,6 +121,12 @@ class MinutelyForecastSpec extends WeatherServiceFTSetupSpec implements Forecast
                     assert it["timezoneOffsetInSeconds"] == 10800
                     assert it["minutely"].size() == 61
                 }
+            }
+
+        and: 'entry for api call metric should be persisted in database'
+            with (systemActor.getApiCallMetricsByApiCallType(restTemplate, ApiCallType.MINUTELY_FORECAST).body) {
+                assert totalTimesCalled == 1
+                assert apiCallType == ApiCallType.MINUTELY_FORECAST.name()
             }
 
         where:
@@ -132,7 +142,7 @@ class MinutelyForecastSpec extends WeatherServiceFTSetupSpec implements Forecast
     @Unroll
     def "Should return error response third party service (OWM) throws exception because api key is not activated yet"() {
         when: "a request is made to get the minutely forecast"
-            def response = getMinutelyForecast(restTemplate, -50.908800, 179.909)
+            def response = userActor.getMinutelyForecast(restTemplate, -50.908800, 179.909)
 
         then: 'error response is returned'
             with(response) {
