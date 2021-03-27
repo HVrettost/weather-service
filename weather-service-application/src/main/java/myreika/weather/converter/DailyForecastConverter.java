@@ -37,14 +37,14 @@ public class DailyForecastConverter implements Converter<DailyForecast, DailyFor
         dailyForecastDto.setTimezoneOffsetInSeconds(dailyForecast.getTimezoneOffset());
         dailyForecastDto.setDaily(dailyForecast.getDaily()
                 .stream()
-                .map(daily -> toDailyDto(daily, dailyForecast.getTimezoneOffset()))
+                .map(this::toDailyDto)
                 .collect(Collectors.toList())
         );
 
         return dailyForecastDto;
     }
 
-    private DailyDto toDailyDto(Daily daily, long timezoneOffset) {
+    private DailyDto toDailyDto(Daily daily) {
         DailyDto dailyDto = new DailyDto();
         dailyDto.setDateTime(epochToDateTimeConverter.convert(daily.getDateTime()));
         dailyDto.setSunrise(epochToDateTimeConverter.convert(daily.getSunrise()));
