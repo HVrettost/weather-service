@@ -89,7 +89,7 @@ public class CurrentWeatherConverter implements Converter<CurrentWeather, Curren
         return weatherList == null || weatherList.size() == 0
                 ? Collections.emptyList()
                 : weatherList.stream()
-                    .map(weather -> new WeatherDescriptionDto(weather.getMain(), weather.getDescription()))
+                    .map(weather -> new WeatherDescriptionDto(weather.getMain(), weather.getDescription(), weather.getIcon()))
                     .collect(Collectors.toList());
     }
 
