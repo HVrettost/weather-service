@@ -6,11 +6,6 @@ task wiremockStart(type: Exec) {
 }
 
 task wiremockStop(type: Exec) {
-    dependsOn('removeWiremockContainer')
-    commandLine 'docker', 'rmi', 'weather-service-infrastructure_weather-mocks'
-}
-
-task removeWiremockContainer(type: Exec) {
     commandLine 'docker-compose', '-f', 'docker-compose-dev.yml', 'rm', '--stop', '--force', '-v', 'weather-mocks'
 }
 
@@ -19,5 +14,13 @@ task mongoDbStart(type: Exec) {
 }
 
 task mongoDbStop(type: Exec) {
-    commandLine 'docker-compose', '-f', 'docker-compose-dev.yml', 'kill', 'weather-database'
+    commandLine 'docker-compose', '-f', 'docker-compose-dev.yml', 'rm', '--stop', '--force', '-v', 'weather-database'
+}
+
+task weatherServiceStart(type: Exec) {
+    commandLine 'docker-compose', '-f', 'docker-compose-dev.yml', 'up', 'weather-service'
+}
+
+task weatherServiceStop(type: Exec) {
+    commandLine 'docker-compose', '-f', 'docker-compose-dev.yml', 'rm', '--stop', '--force', '-v', 'weather-service'
 }

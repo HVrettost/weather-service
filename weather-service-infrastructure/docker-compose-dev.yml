@@ -1,8 +1,11 @@
 version: "3.9"
 services:
   weather-service:
-    build: .
+    build: ../.
     container_name: weather-service
+    depends_on:
+      - weather-database
+      - weather-mocks
     ports:
       - 8700:8700
 
